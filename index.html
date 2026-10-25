@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b121a">
+  <title>Counts — Accounts accounted for when it counts.</title>
+  <style>
+:root{color-scheme:dark;--bg:#0b121a;--sidebar:#101923;--surface:#121e29;--surface-alt:#152431;--line:#293845;--text:#eef5f7;--muted:#8ca1af;--teal:#54d2b4;--teal-dark:#173d3a;--amber:#e3b267;--blue:#8ab5f8;--red:#ec9c92;--radius:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--teal);outline-offset:2px}a{color:var(--teal)}.app-shell{min-height:100vh;display:grid;grid-template-columns:248px minmax(0,1fr)}.sidebar{border-right:1px solid var(--line);background:var(--sidebar);padding:27px 16px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}.brand{display:flex;align-items:center;gap:11px;color:var(--text);text-decoration:none;margin:0 11px 57px}.brand-mark{display:grid;place-items:center;height:42px;width:42px;border-radius:13px;background:var(--teal-dark);color:var(--teal)}.brand-mark svg{width:29px}.brand strong{display:block;font-size:19px;letter-spacing:-.9px;line-height:1.15}.brand span{color:var(--muted);font-size:10px;letter-spacing:.7px}.nav-label{font-size:10px;font-weight:800;letter-spacing:1.6px;color:#587082;margin:0 12px 13px}.sidebar nav{display:grid;gap:5px}.nav-item{width:100%;display:flex;align-items:center;gap:13px;border:0;background:transparent;color:#a1b4c0;text-align:left;padding:12px 14px;border-radius:11px;font-weight:600}.nav-item:hover{background:#1b2b37;color:#fff}.nav-item.active{background:var(--teal-dark);color:#8cf2d9}.nav-icon{width:20px;text-align:center;font-size:20px;line-height:1}.sidebar-bottom{margin-top:auto;display:flex;align-items:flex-start;gap:10px;padding:17px 13px;border:1px solid var(--line);border-radius:12px;background:#15222e}.sidebar-bottom b{font-size:12px;display:block}.sidebar-bottom span{display:block;font-size:11px;color:var(--muted);margin-top:4px}.status-dot{width:8px;height:8px;background:var(--teal);border-radius:50%;margin-top:6px;flex-shrink:0;box-shadow:0 0 0 4px #1b453c}.main{min-width:0;display:flex;flex-direction:column}.topbar{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 40px;gap:15px}.crumb{font-weight:700;color:#889daa;font-size:11px;letter-spacing:1px}.crumb span{margin:0 6px;color:#d1dfe6}.top-actions{display:flex;gap:16px;align-items:center}.demo-label{font-size:10px;letter-spacing:1px;color:var(--amber);background:#3a2b1e;padding:5px 8px;border-radius:5px;font-weight:800}.btn{border:1px solid var(--line);background:#1b2b38;color:var(--text);border-radius:9px;padding:10px 15px;font-weight:700;transition:.15s ease}.btn:hover{border-color:#668392;background:#223847}.btn-primary{background:var(--teal);border-color:var(--teal);color:#102b2c}.btn-primary:hover{background:#88e9d1;border-color:#88e9d1}.btn-sm{font-size:12px;padding:7px 10px;border-radius:7px}.btn-danger{color:#ffb8b1;border-color:#643d3d;background:#332124}.btn-danger:hover{background:#4a2d30}.btn-plain{border:0;background:transparent;color:var(--muted);padding:8px}.btn-plain:hover{color:#fff}.page-root{padding:34px 40px;max-width:1580px;width:100%;margin:0 auto;flex:1}.footer{color:#587081;font-size:11px;padding:20px 40px;border-top:1px solid #1c2c38}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:24px}.eyebrow{text-transform:uppercase;color:var(--teal);letter-spacing:2px;font-size:11px;font-weight:800;margin-bottom:8px}.page-head h1{font-size:31px;letter-spacing:-1.2px;line-height:1.1;margin:0 0 8px}.subtext{color:var(--muted);margin:0;font-size:13px}.picker{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.input,.select{border:1px solid var(--line);background:#152430;color:var(--text);border-radius:9px;padding:10px 12px;min-height:40px;max-width:100%}.input::placeholder{color:#6c8392}.select{cursor:pointer}.input.wide{width:100%}.perspective{display:flex;background:#111d27;padding:5px;border:1px solid var(--line);border-radius:12px;gap:5px;flex-wrap:wrap;margin-bottom:24px;width:fit-content}.perspective button{border:0;background:transparent;color:#90a6b3;padding:10px 16px;border-radius:8px;font-size:12px;font-weight:700}.perspective button.active{background:#26463f;color:#9dfbe3}.account-filter{margin-left:8px}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:19px}.card{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:23px;min-width:0}.kpi .kpi-label{font-size:12px;color:#a1b5bf;font-weight:600;margin-bottom:12px;display:flex;justify-content:space-between}.kpi-value{font-size:28px;font-weight:750;letter-spacing:-1px;line-height:1.1;white-space:nowrap}.kpi-foot{color:#849aaa;font-size:11px;margin-top:13px}.kpi-icon{color:var(--teal)}.accent-teal{color:#76e4c9}.accent-amber{color:var(--amber)}.accent-blue{color:var(--blue)}.accent-red{color:var(--red)}.visual-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:19px;margin-bottom:19px}.card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:15px}.card-title{font-size:15px;letter-spacing:-.2px;font-weight:750;margin:0}.card-sub{font-size:11px;color:var(--muted);margin-top:4px}.chip{color:#92bbbc;border:1px solid #2b5b59;background:#183431;border-radius:30px;font-size:11px;font-weight:700;padding:5px 9px}.chart-bars{height:222px;display:flex;align-items:end;gap:19px;padding:15px 8px 0;border-bottom:1px solid #3c4d58;background:repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),#20303a calc(25% - 1px),#20303a 25%)}.bar-wrap{flex:1;min-width:0;height:100%;display:flex;align-items:end;justify-content:center;gap:5px;position:relative}.bar{width:22px;max-width:33%;border-radius:5px 5px 0 0;min-height:2px;transition:height .2s;position:relative}.bar:hover::after{content:attr(data-tooltip);white-space:nowrap;position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 8px);background:#e7eef0;color:#10212d;font-size:10px;padding:5px 7px;border-radius:5px;z-index:2}.bar.essential{background:#54d2b4}.bar.discretionary{background:#e4ae70}.bar-labels{display:flex;gap:19px;padding:12px 8px 0}.bar-labels span{flex:1;text-align:center;color:#8ba1ad;font-size:11px}.legend{display:flex;gap:18px;margin-top:24px;font-size:11px;color:#a1b4be}.dot{display:inline-block;height:9px;width:9px;border-radius:3px;vertical-align:-1px;margin-right:6px}.category-visual{display:flex;align-items:center;gap:24px}.donut{width:160px;height:160px;flex-shrink:0;border-radius:50%;position:relative;display:grid;place-items:center}.donut::after{content:'';position:absolute;inset:25px;border-radius:50%;background:var(--surface)}.donut-center{position:relative;z-index:1;text-align:center}.donut-center strong{font-size:19px;display:block}.donut-center span{font-size:10px;color:var(--muted)}.cat-list{flex:1;min-width:0;display:grid;gap:11px}.cat-row{display:flex;justify-content:space-between;gap:10px;font-size:12px}.cat-row span{color:#b0c1ca;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cat-row strong{font-size:11px;font-weight:750}.transactions-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}.transactions-head .card-title{margin:0}.transactions-actions{display:flex;gap:8px;flex-wrap:wrap}.table-wrap{overflow:auto;width:100%}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}th{text-transform:uppercase;letter-spacing:1px;font-size:10px;color:#738998;padding:12px 11px;border-bottom:1px solid var(--line);white-space:nowrap}td{padding:14px 11px;border-bottom:1px solid #263541;vertical-align:middle}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#182731}.merchant{font-weight:700;color:#edf4f5;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.muted{color:#849aa7}.cat-tag{display:inline-flex;align-items:center;border-radius:7px;padding:5px 8px;background:#23353f;color:#c7d8df;font-size:11px;white-space:nowrap}.cat-tag.unknown{color:#efbd70;background:#3b2b20}.cat-tag.transfer{color:#9baec2;background:#243444}.amount-neg{color:#f0eef2;font-weight:750}.amount-pos{color:var(--teal);font-weight:750}.btn-link{color:var(--teal);border:0;background:transparent;font-size:12px;font-weight:750;padding:6px}.btn-link:hover{text-decoration:underline}.empty{color:#869ca9;text-align:center;padding:35px 20px}.notice{border:1px solid #2b5454;border-radius:11px;background:#142b30;padding:13px 16px;color:#b7d1d1;font-size:12px;margin:18px 0;line-height:1.6}.notice.warn{background:#30271d;border-color:#5e4d2b;color:#ecd3a7}.notice.danger{background:#352225;border-color:#643c3f;color:#efb7b1}.view-note{color:#90a7b1;font-size:12px;margin:-8px 0 22px}.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.stack{display:grid;gap:18px}.form-row{display:grid;gap:7px;margin-bottom:14px}.form-row label{font-size:11px;letter-spacing:.5px;color:#a8bac4;font-weight:700}.form-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:18px}.list-item{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:15px 0;gap:15px}.list-item:last-child{border-bottom:0}.list-item strong{display:block}.list-item small{display:block;color:var(--muted);margin-top:3px}.list-item-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.pill{border:1px solid #35515c;color:#a9cad5;padding:5px 9px;border-radius:30px;font-size:11px}.account-icon{display:grid;place-items:center;width:42px;height:42px;flex-shrink:0;border-radius:11px;background:#254541;color:var(--teal);font-size:19px}.account-row{display:flex;align-items:center;gap:12px}.account-row-body{flex:1}.separator{height:1px;background:var(--line);margin:18px 0}.dropzone{border:1.5px dashed #476271;padding:38px 15px;text-align:center;border-radius:12px;background:#132531;cursor:pointer}.dropzone:hover{border-color:var(--teal)}.dropzone strong{font-size:15px;display:block}.dropzone p{font-size:12px;color:var(--muted);margin:8px 0 0}.dropzone input{display:none}.mapping-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.modal-layer{position:fixed;inset:0;z-index:100;background:#02070dbd;display:grid;place-items:center;padding:16px;backdrop-filter:blur(4px)}.modal-layer.hidden{display:none}.modal{background:#14232e;border:1px solid #46606a;border-radius:18px;padding:28px;width:100%;max-width:520px;max-height:92vh;overflow:auto;box-shadow:0 24px 70px #000a}.modal h2{margin:0 0 9px;font-size:23px}.modal p{color:#9fb6c1;font-size:12px}.modal .modal-close{float:right;margin:-10px -10px 0 0}.modal .radio-options{display:grid;gap:12px;padding:13px;background:#1a2d37;border-radius:10px}.modal .radio-options label{color:#cbdce2;font-size:12px;cursor:pointer}.toast-container{position:fixed;bottom:24px;right:24px;z-index:500;display:grid;gap:9px}.toast{background:#233f3e;color:#d0fcf0;border:1px solid #397e6f;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px #0006;max-width:350px;font-size:12px}.toast.error{background:#482a2a;color:#ffd4cc;border-color:#935050}.muted-mini{color:var(--muted);font-size:11px}.rules-empty{color:#9cafba;padding:18px;border:1px dashed #35505d;border-radius:9px;font-size:12px}.group-badge{display:inline-block;border-radius:6px;background:#1e3a34;color:#97dfcd;font-size:10px;font-weight:800;padding:4px 7px;letter-spacing:.6px}.group-badge.discretionary{background:#473525;color:#e8c59d}.group-badge.uncategorized{background:#443024;color:#e4b477}.mini-hint{font-size:11px;color:#89a1ad;line-height:1.5}.color-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}.category-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #263541}.category-row:last-child{border-bottom:0}.category-row .label{flex:1;font-size:12px}.section-title{font-size:15px;font-weight:700;margin:0 0 12px}.account-selectors{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.success-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.success-summary .card{padding:14px}.success-summary strong{font-size:23px;display:block}.success-summary span{color:var(--muted);font-size:11px}.range{width:100%;accent-color:var(--teal)}.hidden{display:none!important}@media(max-width:1250px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-grid{grid-template-columns:1fr}.page-root{padding:28px}.topbar{padding:0 28px}}@media(max-width:800px){.app-shell{grid-template-columns:1fr}.sidebar{height:auto;position:static;padding:10px 12px;display:block;border-right:0;border-bottom:1px solid var(--line)}.brand{margin:4px 4px 13px}.sidebar .nav-label,.sidebar-bottom{display:none}.sidebar nav{display:flex;overflow:auto;gap:3px}.nav-item{font-size:11px;white-space:nowrap;width:auto;padding:10px}.nav-icon{display:none}.page-root{padding:22px 15px}.topbar{padding:0 15px;height:61px}.topbar .crumb{display:none}.page-head{flex-direction:column}.page-head h1{font-size:26px}.kpis{gap:10px}.card{padding:17px}.kpi-value{font-size:23px}.visual-grid{gap:12px}.category-visual{gap:14px}.donut{width:120px;height:120px}.donut::after{inset:22px}.donut-center strong{font-size:14px}.chart-bars{gap:7px}.bar-labels{gap:7px}.bar{width:14px}.split{grid-template-columns:1fr}.top-actions .demo-label{display:none}.footer{padding:16px}}
+
+
+/* Counts v0.3 refinements: layout order, semantic colors and transaction detail. */
+:root{--red:#e87881;--amber:#dcb16b;--blue:#8599b0}
+.brand{margin-bottom:51px}.brand strong{font-size:24px;letter-spacing:-1.4px}.brand-period{color:var(--teal)!important;font-size:24px!important;letter-spacing:0!important}.brand span:not(.brand-period){font-size:10px;line-height:1.3;letter-spacing:.1px;max-width:160px}
+.visual-grid.breakdown-grid{grid-template-columns:1fr 1fr;gap:16px;margin-bottom:19px}
+.category-visual{gap:19px;align-items:center}.category-visual .donut{width:172px;height:172px}.cat-list{gap:12px;max-height:240px;overflow:auto;padding-right:3px}
+.cat-row strong{white-space:nowrap}.cat-row strong small{font-weight:500;color:var(--muted)}.cat-row span{color:#d4e0e5}.donut::after{inset:29px}
+.stats-section{display:grid;gap:13px;margin-bottom:19px}.stats-section>.kpi-total>.kpi{border:0;background:transparent;padding:19px 23px}.kpi-total{padding:0;border-color:#356660;background:linear-gradient(110deg,#142e34,#172a35)}.kpi-total .kpi-value{font-size:35px}.kpis.kpis-three{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:0;gap:13px}
+.kpis-three .kpi{padding:18px 22px}.kpis-three .kpi-value{font-size:25px}.accent-blue{color:#a9b7c8}
+.trend-card{margin-bottom:19px}.bar.essential{background:#54d2b4}.bar.discretionary{background:#e87881}.bar.unassigned{background:#8293a2}
+.chart-bars{gap:10px}.bar-wrap{gap:6px}.bar{width:25px;max-width:30%}.bar-labels{gap:10px;flex-wrap:nowrap}.bar-labels span{white-space:nowrap}
+.cat-tag.colored{color:var(--category-color);border:1px solid color-mix(in srgb,var(--category-color),transparent 62%);background:color-mix(in srgb,var(--category-color),transparent 91%);gap:3px;font-weight:700}
+.cat-tag.unknown{color:#aab7c4;background:#283541}.cat-tag.transfer{color:#8fa8ce}.tx-row{cursor:pointer}.tx-row:focus-visible{outline:2px solid var(--teal);outline-offset:-3px;background:#1b303d}.tx-row[aria-expanded="true"]{background:#1b303d}.tx-details td{background:#15242f;padding:17px 20px 20px}.details-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.details-grid div{min-width:0;overflow-wrap:anywhere}.details-grid span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}.details-grid strong{font-size:12px;font-weight:650;color:#dbe9ed}.expand-icon{font-size:20px;padding:0 6px;vertical-align:middle}
+@media(max-width:1250px){.visual-grid.breakdown-grid{grid-template-columns:1fr 1fr}.category-visual{flex-wrap:wrap;justify-content:center}.cat-list{width:100%}}
+@media(max-width:900px){.visual-grid.breakdown-grid{grid-template-columns:1fr}.category-visual{flex-wrap:nowrap}.details-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.app-shell{grid-template-columns:minmax(0,1fr)}.main,.sidebar,.page-root,.visual-grid.breakdown-grid,.kpis.kpis-three{min-width:0;max-width:100%}.visual-grid.breakdown-grid{grid-template-columns:minmax(0,1fr)}.cat-list{min-width:0}.category-visual{max-width:100%}}
+@media(max-width:650px){.kpis.kpis-three{grid-template-columns:1fr}.category-visual{flex-wrap:wrap}.details-grid{grid-template-columns:repeat(2,1fr)}.kpi-total .kpi-value{font-size:29px}.chart-bars{gap:3px}.bar-labels{gap:3px}.bar{width:13px;max-width:28%}.cat-row strong small{display:none}}
+/* v0.3: more legible category palette, guided date pickers, adaptive donut callouts. */
+.period-picker{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.period-picker label{display:grid;gap:5px;color:#aebfcc;font-size:10px;font-weight:750;letter-spacing:.55px;text-transform:uppercase}
+.period-picker select{min-width:99px;max-width:140px;font-size:12px;padding:9px 11px}
+.period-picker select:disabled{opacity:.43;cursor:not-allowed}
+.period-chevron{align-self:flex-end;color:#72909d;font-size:20px;margin-bottom:7px}
+.connector-chart{display:block;width:100%;height:auto;max-width:100%;margin:-6px auto -5px;overflow:visible}
+.category-visual-wrapper{min-width:0}
+.category-visual-wrapper .chart-fallback{display:none}
+@media(max-width:1199px){.connector-chart{display:none}.category-visual-wrapper .chart-fallback{display:flex}}
+@media(max-width:650px){.period-picker{justify-content:flex-start;gap:5px}.period-picker select{min-width:85px;max-width:108px;padding:8px 7px}.period-chevron{display:none}.period-picker label{font-size:9px}.page-head{flex-wrap:wrap}}
+
+/* Counts v0.4: matching legends for both counterclockwise donuts; adaptive trends. */
+.category-visual-wrapper .category-visual{display:flex!important}
+.trend-head-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.trend-toggle{display:flex;gap:4px;padding:3px;background:#0d1b25;border:1px solid var(--line);border-radius:9px}
+.trend-toggle .btn{border:0;background:transparent;color:#9badb9;min-width:47px;padding:6px 11px}
+.trend-toggle .btn.active{background:#255048;color:#b8ffee}
+.trend-line-wrap{width:100%;overflow:hidden}
+.trend-line{display:block;width:100%;height:auto;max-width:100%}
+.trend-line-labels{display:flex;gap:0;padding:3px 0 0}
+.trend-line-labels span{flex:1;text-align:center;color:#8ba1ad;font-size:11px;white-space:nowrap}
+.trend-note{font-size:11px;color:#78909f;margin:13px 0 0}
+.trend-card .legend{margin-top:18px;flex-wrap:wrap}
+@media(max-width:800px){.trend-head-actions{gap:6px}.trend-head-actions .chip{display:none}.trend-card .card-head{flex-wrap:wrap}.trend-line-labels span{font-size:10px}.trend-card .legend{gap:11px}}
+@media(max-width:440px){.trend-line-labels span{font-size:9px}.chart-bars .bar{max-width:32%}.trend-card .card-sub{font-size:10px}}
+.language-picker .select{padding:7px 9px;min-height:34px;font-size:12px;font-weight:800;letter-spacing:.4px;border-color:#45616c;background:#1b2c37}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:480px){.top-actions{gap:7px}.language-picker .select{padding:6px 5px}.topbar{gap:8px}}
+/* Clear, per-file batch import review */
+.batch-file{border:1px solid #345364;background:#12232f;border-radius:13px;padding:18px;margin:13px 0;min-width:0}
+.batch-head{display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.batch-head strong{font-size:15px;overflow-wrap:anywhere}.batch-account{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;align-items:start}
+.batch-account .form-row{min-width:0}.batch-preview{display:flex;flex-wrap:wrap;gap:9px;margin:9px 0 14px}
+.batch-metric{background:#1b3240;border:1px solid #345261;border-radius:8px;padding:9px 12px;min-width:122px;flex:1}
+.batch-metric span{display:block;color:#a7bdc7;font-size:11px}.batch-metric strong{font-size:16px}
+.batch-file details{margin-top:12px}.batch-file summary{cursor:pointer;color:#85dccc;font-weight:750;padding:8px 0}
+.batch-note{color:#a1b5bf;font-size:12px;margin:10px 0}.batch-warning{color:#ffd697;border:1px solid #826239;border-radius:8px;background:#332b22;padding:10px;font-size:12px;margin:10px 0}
+.batch-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:18px}
+@media(max-width:700px){.batch-account{grid-template-columns:1fr}.batch-file{padding:13px}}
+/* Counts v0.7: actual-value y axes and independent spending filters */
+.trend-plot{display:flex;align-items:stretch;gap:10px;min-width:0}
+.trend-y-axis{height:222px;display:flex;flex-direction:column;justify-content:space-between;text-align:right;padding:10px 0 0;min-width:68px;font-size:11px;color:#9bb5c5;white-space:nowrap}
+.trend-chart-column{flex:1;min-width:0}.trend-chart-column .chart-bars{width:100%}
+.transactions-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.transactions-actions .select{max-width:190px}.transactions-actions input{max-width:220px}
+@media(max-width:670px){.trend-y-axis{min-width:49px;font-size:9px}.trend-plot{gap:5px}.transactions-actions{width:100%;justify-content:flex-start}.transactions-actions .select{max-width:calc(50% - 5px)}.transactions-actions .input{max-width:100%;width:100%}}
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Application navigation">
+      <a href="#dashboard" class="brand" data-nav="dashboard" aria-label="Counts home">
+        <div class="brand-mark"><svg viewBox="0 0 34 34" fill="none"><path d="M7 24V17l7 3V10l7 5V8l6 3v13H7Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M6 28h23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><strong>counts<span class="brand-period">.</span></strong><span>Accounts accounted for when it counts.</span></div>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav id="sidebar-nav">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">◫</span> Dashboard</button>
+        <button class="nav-item" data-page="transactions"><span class="nav-icon">≡</span> Transactions</button>
+        <button class="nav-item" data-page="accounts"><span class="nav-icon">▣</span> Accounts</button>
+        <button class="nav-item" data-page="rules"><span class="nav-icon">⚙</span> Categories</button>
+        <button class="nav-item" data-page="import"><span class="nav-icon">⇪</span> Import & backup</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="status-dot"></div><div><b>Private by design</b><span>Your data stays in this browser.</span></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">YOUR WORKSPACE <span>/</span> <span id="page-crumb">Dashboard</span></div>
+        <div class="top-actions"><label class="language-picker" for="language-switch"><span class="sr-only">Language / Språk</span><select id="language-switch" class="select" aria-label="Language / Språk"><option value="en">EN</option><option value="no">NO</option></select></label><span class="demo-label" id="demo-label">DEMO DATA</span><button class="btn btn-primary" id="top-import">+ Import statement</button></div>
+      </header>
+      <div id="page-root" class="page-root"></div>
+      <footer class="footer">Counts • Local-first prototype • No bank connection or transmission of account data</footer>
+    </main>
+  </div>
+  <div class="toast-container" id="toasts" aria-live="polite"></div>
+  <div class="modal-layer hidden" id="modal-layer" role="presentation"><div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Edit transaction"></div></div>
+  <script>
+const DEFAULT_CATEGORIES = [
+  {id:'groceries',name:'Groceries',group:'essential',color:'#49c38a'},
+  {id:'housing',name:'Housing & common costs',group:'essential',color:'#7fb6e8'},
+  {id:'mortgage',name:'Mortgage payments',group:'essential',color:'#476dd0'},
+  {id:'electricity',name:'Electricity',group:'essential',color:'#06bfd0'},
+  {id:'utilities',name:'Other utilities',group:'essential',color:'#8389ec'},
+  {id:'health',name:'Healthcare',group:'essential',color:'#e766af'},
+  {id:'transport',name:'Transport',group:'essential',color:'#f5cf3f'},
+  {id:'shopping',name:'Shopping',group:'discretionary',color:'#ef796c'},
+  {id:'dining',name:'Restaurants & cafés',group:'discretionary',color:'#ff9a53'},
+  {id:'entertainment',name:'Entertainment',group:'discretionary',color:'#ad7af0'},
+  {id:'subscriptions',name:'Subscriptions',group:'discretionary',color:'#e18bd3'},
+  {id:'travel',name:'Travel',group:'discretionary',color:'#b4d863'},
+  {id:'other',name:'Other expenses',group:'discretionary',color:'#a4aabb'},
+];
+const DEFAULT_ACCOUNTS = [
+  {id:'personal',name:'Personal current account',role:'personal',type:'checking',share:100},
+  {id:'shared',name:'Shared household account',role:'shared',type:'household',share:50},
+  {id:'loan',name:'Shared mortgage account',role:'shared',type:'mortgage',share:50},
+];
+const AUTO_PATTERNS = [
+  [/(^|\s)(kiwi|rema\s*1000|meny|bunnpris|coop|extra|joker|jacobs|spar|obs)(\s|$)/i,'groceries'],
+  [/(hafslund|elvia|fortum|norgesenergi|tibber|str[oø]mregning|fjordkraft)/i,'electricity'],
+  [/(husleie|felleskostnad|fellesutgift|borettslag|sameiet|common building costs)/i,'housing'],
+  [/(terminbel[oø]p|l[aå]netermin|boligl[aå]n|renter og avdrag|mortgage)/i,'mortgage'],
+  [/(apotek|lege|tannlege|sykehus|legevakt|helsenorge)/i,'health'],
+  [/(internet and broadband|broadband)/i,'utilities'],
+  [/(ruter|vy\b|kolumbus|atb\b|entur|public transport)/i,'transport'],
+  [/(netflix|spotify|disney\+|hbo|max\.com|youtube premium|apple\.com\/bill)/i,'subscriptions'],
+  [/(\bsteam\b|playstation|xbox|kino|vinmonopolet)/i,'entertainment'],
+  [/(restaurant|pizza|cafe|caf[eé]|wolt|foodora|mcdonald|burger king)/i,'dining'],
+  [/(h&m|hm\.com|zalando|ikea|clas ohlson|lyko|elkj[oø]p|komplett)/i,'shopping'],
+  [/(flytoget|sas|norwegian air|hotell|booking\.com)/i,'travel'],
+];
+const toNorm = text => String(text ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ø/gi,'o').replace(/æ/gi,'ae').replace(/[^a-zA-Z0-9]+/g,' ').trim().toLowerCase();
+function merchantKey(desc){
+  let s=toNorm(desc).replace(/\b(?:kortkjop|varekjop|betaling|reservert|visa|mastercard|vipps|transaksjon|fra|til|dato|terminal)\b/g,' ').replace(/\s+/g,' ').trim();
+  const known=[['rema 1000','rema 1000'],['kiwi','kiwi'],['meny','meny'],['bunnpris','bunnpris'],['coop extra','coop extra'],['extra','extra'],['netflix','netflix'],['spotify','spotify'],['hafslund','hafslund'],['elvia','elvia'],['steam','steam'],['apotek','apotek'],['vinmonopolet','vinmonopolet'],['wolt','wolt']];
+  for(const [needle,key] of known){if(new RegExp('(^| )'+needle.replace(/ /g,'\\s+')+'( |$)').test(s))return key;}
+  return s.replace(/\b\d{2,}\b/g,' ').replace(/\s+/g,' ').trim().slice(0,68) || 'unknown';
+}
+function matchingRule(description,rules=[]){
+  const key=merchantKey(description),raw=toNorm(description);
+  return [...rules].sort((a,b)=>toNorm(b.merchant).length-toNorm(a.merchant).length).find(r=>{
+    const pattern=toNorm(r.merchant);
+    return pattern.length>=3&&(key===pattern||(` ${raw} `).includes(` ${pattern} `)||(` ${key} `).includes(` ${pattern} `));
+  });
+}
+function categorize(description,rules=[]){
+  return matchingRule(description,rules)?.category||AUTO_PATTERNS.find(([regex])=>regex.test(String(description||'')))?.[1]||'';
+}
+function effectiveGroup(t,rules=[],categories=[]){
+  if(t.groupOverride==='essential'||t.groupOverride==='discretionary')return t.groupOverride;
+  if(t.category)return categories.find(c=>c.id===t.category)?.group||'';
+  const rule=matchingRule(t.description,rules);
+  if(rule&&(rule.group==='essential'||rule.group==='discretionary'))return rule.group;
+  const category=effectiveCategory(t,rules);
+  return categories.find(c=>c.id===category)?.group||'';
+}
+function parseCSV(text, delimiter){
+  const src=String(text).replace(/^\uFEFF/,'');
+  const d=delimiter||detectDelimiter(src);
+  let rows=[],row=[],field='',quoted=false;
+  for(let i=0;i<src.length;i++){
+    const ch=src[i];
+    if(ch==='"'){
+      if(quoted&&src[i+1]==='"'){field+='"';i++;} else quoted=!quoted;
+    }else if(ch===d&&!quoted){row.push(field);field='';}
+    else if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&src[i+1]==='\n')i++;row.push(field);if(row.some(x=>x.trim()))rows.push(row);row=[];field='';}
+    else field+=ch;
+  }
+  row.push(field);if(row.some(x=>x.trim()))rows.push(row);
+  return rows;
+}
+function detectDelimiter(text){
+  const firstLines=String(text).split(/\r?\n/).slice(0,12).filter(Boolean);
+  let score={';':0,',':0,'\t':0};
+  for(const line of firstLines){let quoted=false; for(let i=0;i<line.length;i++){if(line[i]==='"'){if(quoted&&line[i+1]==='"'){i++;continue;}quoted=!quoted;}else if(!quoted&&score[line[i]]!==undefined)score[line[i]]++;}}
+  return Object.entries(score).sort((a,b)=>b[1]-a[1])[0][0];
+}
+function detectHeader(rows){
+  for(let i=0;i<Math.min(20,rows.length);i++){
+    const ns=rows[i].map(toNorm);
+    const hasDate=ns.some(s=>/dato|date|bokfor/.test(s));
+    const hasAmount=ns.some(s=>/belop|amount|debet|kredit|ut av|inn pa|sum/.test(s));
+    if(hasDate&&hasAmount) return i;
+  }
+  return 0;
+}
+function guessMapping(headers){
+  const hs=headers.map(toNorm);
+  const get=(terms,exclude=[])=>{
+    for(const term of terms){const i=hs.findIndex(s=>s===term);if(i>=0)return i;}
+    for(const term of terms){const i=hs.findIndex(s=>s.includes(term)&&!exclude.some(e=>s.includes(e)));if(i>=0)return i;}
+    return -1;
+  };
+  return {
+    date:get(['bokforingsdato','transaksjonsdato','dato','date','valutadato']),
+    desc:get(['beskrivelse','transaksjonstekst','tekst','melding','mottaker','brukersted','description','navn']),
+    amount:get(['belop','belop nok','amount','sum','transaksjonsbelop'],['saldo','balanse','inn','ut','debet','kredit']),
+    debit:get(['ut','ut av konto','belop ut','utgaende belop','utgaende','utbetaling','debet','uttak','withdrawal','out']),
+    credit:get(['inn','inn pa konto','belop inn','inngaende belop','inngaende','innbetaling','kredit','innskudd','deposit','in']),
+    time:get(['klokkeslett','tidspunkt','tid','time','transaction time']),
+    reference:get(['referanse','reference','kid','melding','message','detaljer'],['beskrivelse']),
+    balance:get(['saldo etter','saldo','balance']),
+    toAccount:get(['til konto','mottakerkonto','to account','recipient account']),
+    fromAccount:get(['fra konto','avsenderkonto','from account','sender account']),
+  };
+}
+function parseAmount(input){
+  if(input===undefined||input===null)return null;
+  let s=String(input).trim().replace(/[−–—]/g,'-').replace(/[\s\u00a0\u202f]|kr|nok/gi,'');
+  if(!s||s==='-')return null;
+  let neg=/^\(.*\)$/.test(s)||s.includes('-');
+  s=s.replace(/[()\-+]/g,'');
+  const comma=s.lastIndexOf(','),dot=s.lastIndexOf('.');
+  if(comma!==-1&&dot!==-1){if(comma>dot)s=s.replace(/\./g,'').replace(',','.'); else s=s.replace(/,/g,'');}
+  else if(comma!==-1){
+    const decimals=s.length-comma-1;
+    s=decimals===3&&s.indexOf(',')===comma?s.replace(/,/g,''):s.replace(',','.');
+  }else if(dot!==-1&&s.length-dot-1===3&&s.indexOf('.')===dot){s=s.replace('.','');}
+  const n=Number(s);return Number.isFinite(n)?Math.round((neg?-n:n)*100):null;
+}
+function parseTime(value){
+  const match=String(value||'').match(/(?:^|[T\s])(\d{1,2}):(\d{2})(?::(\d{2}))?/);
+  if(!match)return '';
+  const hh=Number(match[1]), mm=Number(match[2]), ss=match[3]!==undefined?Number(match[3]):null;
+  if(hh>23||mm>59||(ss!==null&&ss>59))return '';
+  return String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0')+(ss===null?'':':'+String(ss).padStart(2,'0'));
+}
+function parseDate(value){
+  const s=String(value||'').trim();let m;
+  if((m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)))return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
+  if((m=s.match(/^(\d{1,2})[.\/-](\d{1,2})[.\/-](\d{2,4})/))){let year=Number(m[3]);if(year<100)year+=year>=70?1900:2000;const day=Number(m[1]),month=Number(m[2]);if(month<1||month>12||day<1||day>31)return '';return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;}
+  return '';
+}
+function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0).toString(36);}
+function accountFingerprint(value){const digits=String(value||'').replace(/\D/g,'');return digits.length>=10&&digits.length<=34?hash(digits):'';}
+function inferOwnAccountKey(records){
+  const counts=new Map();let observed=0;
+  for(const t of records){
+    const key=t.amount<0?t.fromKey:t.amount>0?t.toKey:'';
+    if(key){observed++;counts.set(key,(counts.get(key)||0)+1);}
+  }
+  const sorted=[...counts].sort((a,b)=>b[1]-a[1]);
+  if(!sorted.length)return '';
+  const [key,count]=sorted[0];
+  return count>=3&&count/Math.max(1,observed)>=.8?key:'';
+}
+function knownBankKey(account){
+  if(account.bankKey)return account.bankKey;
+  return inferOwnAccountKey(state.transactions.filter(t=>t.accountId===account.id));
+}
+function csvToTransactions(rows,mapping,accountId){
+  const records=[];const errors=[];const duplicateCounter={};
+  for(let i=0;i<rows.length;i++){
+    const row=rows[i];
+    if(row.every(x=>!String(x).trim()))continue;
+    const date=parseDate(row[mapping.date]);
+    const description=String(row[mapping.desc]||'').trim();
+    let amount=mapping.amount>=0?parseAmount(row[mapping.amount]):null;
+    if(mapping.amount<0){const out=parseAmount(row[mapping.debit]),inside=parseAmount(row[mapping.credit]);amount=(inside===null&&out===null)?null:(Math.abs(inside||0)-Math.abs(out||0));}
+    if(!date||amount===null){errors.push(i+1);continue;}
+    const time=parseTime((mapping.time>=0?row[mapping.time]:'')||row[mapping.date]);
+    const reference=mapping.reference>=0&&mapping.reference!==mapping.desc?String(row[mapping.reference]||'').trim().slice(0,180):'';
+    const balance=mapping.balance>=0?parseAmount(row[mapping.balance]):null;
+    const fromKey=Number.isInteger(mapping.fromAccount)&&mapping.fromAccount>=0?accountFingerprint(row[mapping.fromAccount]):'';
+    const toKey=Number.isInteger(mapping.toAccount)&&mapping.toAccount>=0?accountFingerprint(row[mapping.toAccount]):'';
+    const basis=`${accountId}|${date}|${amount}|${toNorm(description)}`;
+    duplicateCounter[basis]=(duplicateCounter[basis]||0)+1;
+    records.push({id:'tx_'+hash(basis)+'_'+duplicateCounter[basis],accountId,date,time,description:description||'Unknown transaction',amount,reference,balance,fromKey,toKey,category:'',groupOverride:null,transferOverride:null,created:Date.now()});
+  }
+  return {records,errors};
+}
+function dateDistance(a,b){return Math.abs((Date.parse(a+'T00:00:00Z')-Date.parse(b+'T00:00:00Z'))/86400000);}
+function transferMatches(transactions){
+  // Best evidence: the bank identifies BOTH the same source and destination
+  // accounts on the opposite-signed rows. We store short fingerprints rather
+  // than raw account numbers, only for in-browser transfer reconciliation.
+  // Fallback: matching signed amounts across two accounts with transfer wording.
+  const candidates=transactions.filter(t=>t.transferOverride!==false);
+  const used=new Set(),matched=new Set();
+  for(const a of candidates.filter(t=>t.amount<0).sort((a,b)=>a.date.localeCompare(b.date)||a.id.localeCompare(b.id))){
+    if(used.has(a.id))continue;
+    const possible=candidates.filter(b=>b.amount===-a.amount&&b.accountId!==a.accountId&&!used.has(b.id)&&dateDistance(a.date,b.date)<=3);
+    const linked=possible.filter(b=>a.fromKey&&a.toKey&&b.fromKey===a.fromKey&&b.toKey===a.toKey);
+    const options=linked.length?linked:possible;
+    if(options.length!==1)continue;
+    const b=options[0],provenByAccounts=linked.length===1;
+    const hint=/(overf[oø]r|transfer|mellom egne|fra konto|til konto|fast overf|innbetaling|avsetning)/i;
+    if(!provenByAccounts&&!hint.test(a.description)&&!hint.test(b.description))continue;
+    if(!provenByAccounts){
+      // Do not auto-match ambiguous text-only pairs.
+      const competing=candidates.filter(x=>x.id!==a.id&&x.accountId===a.accountId&&x.amount===a.amount&&dateDistance(x.date,b.date)<=3&&!used.has(x.id));
+      if(competing.length)continue;
+    }
+    matched.add(a.id);matched.add(b.id);used.add(a.id);used.add(b.id);
+  }
+  return matched;
+}
+function isTransfer(t,matched){return t.transferOverride===true||(t.transferOverride!==false&&matched.has(t.id));}
+function effectiveCategory(t,rules=[]){return t.category||categorize(t.description,rules);}
+function inPeriod(date,period){
+  if(period==='all'||!period)return true;
+  if(period.startsWith('m:'))return date.slice(0,7)===period.slice(2);
+  if(period.startsWith('y:'))return date.slice(0,4)===period.slice(2);
+  if(period.startsWith('q:')){
+    const [year,q]=period.slice(2).split('-Q');
+    return date.slice(0,4)===year && Math.ceil(Number(date.slice(5,7))/3)===Number(q);
+  }
+  // Compatibility with old YYYY-MM callers.
+  return date.slice(0,7)===period;
+}
+function derive(transactions,accounts,categories,rules,perspective='household',selectedAccount='personal',period='all'){
+  const matches=transferMatches(transactions);
+  const accountById=Object.fromEntries(accounts.map(a=>[a.id,a]));
+  const visible=transactions.filter(t=>inPeriod(t.date,period))
+    .filter(t=>perspective!=='account'||t.accountId===selectedAccount)
+    .map(t=>{
+      const account=accountById[t.accountId]||{role:'personal',share:100,name:'Unknown account'};
+      const fraction=perspective==='share'?Number(account.share)/100:1;
+      const transfer=isTransfer(t,matches);
+      const category=effectiveCategory(t,rules);
+      const group=effectiveGroup(t,rules,categories);
+      const expense=!transfer&&(t.amount<0||(t.amount>0&&Boolean(category)));
+      const expenseValue=expense?-t.amount*fraction:0;
+      return {...t,account,category,group,transfer,expense,expenseValue,fraction};
+    }).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+  const spending=visible.reduce((n,t)=>n+t.expenseValue,0);
+  const categoryTotals={};let essential=0,discretionary=0,uncategorized=0,transfers=0;
+  for(const t of visible){if(t.transfer){transfers++;continue;}if(!t.expense)continue;const c=categories.find(x=>x.id===t.category);if(!c)uncategorized+=t.expenseValue;else {categoryTotals[c.id]=(categoryTotals[c.id]||0)+t.expenseValue;if(t.group==='essential')essential+=t.expenseValue;else if(t.group==='discretionary')discretionary+=t.expenseValue;else uncategorized+=t.expenseValue;}}
+  const income=visible.filter(t=>!t.transfer&&t.amount>0&&!t.category).reduce((n,t)=>n+t.amount*t.fraction,0);
+  return {visible,spending,essential,discretionary,uncategorized,income,transfers,categoryTotals};
+}
+function exampleTransactions(){
+  // Fictional 2026 household. Fixed recurring costs, seasonal power and varied variable purchases.
+  const items=[];let n=0;
+  const add=(acct,date,desc,amount)=>items.push({id:'demo_'+(++n),accountId:acct,date,description:desc,amount:Math.round(amount*100),time:n%4===0?'14:20':'',reference:'',balance:null,category:'',groupOverride:null,transferOverride:null,created:0});
+  const groceries=[3150,2700,3400,3000,3870,2900,3460,2650,3250,3790,3070,3550];
+  const electricity=[1420,1260,1040,820,570,450,420,510,690,850,1070,1380];
+  const eatingOut=[320,1540,580,1900,420,900,2400,620,1110,430,1720,2200];
+  const shopping=[400,3200,1100,500,4150,900,2700,700,1900,4550,680,3450];
+  const fun=[450,690,1950,500,320,3800,700,2800,960,3700,590,2400];
+  for(let i=0;i<12;i++){
+    const m='2026-'+String(i+1).padStart(2,'0');
+    add('personal',m+'-01','Salary from fictional employer',34000);
+    add('personal',m+'-02','Transfer to joint household',-8200);
+    add('shared',m+'-02','Transfer from personal account',8200);
+    add('shared',m+'-03','Transfer from joint partner',8200);
+    add('personal',m+'-03','Transfer to mortgage account',-5600);
+    add('loan',m+'-03','Transfer from personal mortgage funding',5600);
+    add('loan',m+'-04','Transfer from joint partner mortgage',5600);
+    add('loan',m+'-06','Mortgage installment',-11200);
+    add('shared',m+'-08','Common building costs',-2600);
+    add('shared',m+'-09','Fjordkraft electricity',-electricity[i]);
+    add('shared',m+'-10','Internet and broadband bill',-540);
+    add('shared',m+'-12','KIWI Market',-Math.round(groceries[i]*.55));
+    add('shared',m+'-19','MENY Supermarket',-(groceries[i]-Math.round(groceries[i]*.55)));
+    add('shared',m+'-14','Netflix streaming subscription',-179);
+    add('shared',m+'-16','Spotify family subscription',-199);
+    add('personal',m+'-11','Public transport monthly pass',-810);
+    add('personal',m+'-15','APOTEK pharmacy',-(180+(i%4)*80));
+    add('personal',m+'-17','Café and restaurant',-eatingOut[i]);
+    add('personal',m+'-20','Zalando clothing and shopping',-shopping[i]);
+    add('personal',m+'-22','Steam games',-fun[i]);
+    if(i%3===0)add('personal',m+'-24','Cinema evening',-360);
+    if([2,6,10].includes(i))add('personal',m+'-25','Domestic hotel weekend',-(1800+i*250));
+    if(i%4===2)add('personal',m+'-26','Unrecognized vendor',-(190+i*30));
+  }
+  return items;
+}
+function demoState(){return {version:1,accounts:structuredClone(DEFAULT_ACCOUNTS),categories:structuredClone(DEFAULT_CATEGORIES),rules:[],transactions:exampleTransactions(),demo:true};}
+
+const STORAGE_KEY='clearledger_v1_local';
+// Interface localization is independent of the stored transaction schema.
+// Keep internal category IDs and stored merchant rules language-neutral, so
+// switching languages never mutates users' financial data or saved rules.
+const LANGUAGE_KEY='counts_ui_language';
+let language=(()=>{try{return localStorage.getItem(LANGUAGE_KEY)==='no'?'no':'en';}catch{return 'en';}})();
+const NO_TRANSLATIONS={
+  // Global navigation and branding-adjacent interface (brand itself stays English).
+  'WORKSPACE':'ARBEIDSOMRÅDE',
+  'YOUR WORKSPACE':'DITT ARBEIDSOMRÅDE',
+  'Dashboard':'Oversikt',
+  'Transactions':'Transaksjoner',
+  'Accounts':'Kontoer',
+  'Categories':'Kategorier',
+  'Import & backup':'Import og sikkerhetskopi',
+  'Private by design':'Personvern som utgangspunkt',
+  'Your data stays in this browser.':'Dataene dine lagres i denne nettleseren.',
+  'DEMO DATA':'DEMODATA',
+  '+ Import statement':'+ Importer kontoutskrift',
+  'Local-first prototype':'Lokal prototype',
+  'Counts • Local-first prototype • No bank connection or transmission of account data':'Counts • Lokal prototype • Ingen banktilkobling eller overføring av kontodata',
+  'No bank connection or transmission of account data':'Ingen banktilkobling eller overføring av kontodata',
+  'FINANCIAL CLARITY':'ØKONOMISK OVERSIKT',
+  'Language / Språk':'Language / Språk',
+  // Generic selectors and dates
+  'Household':'Husholdning',
+  'Me':'Meg',
+  'My share':'Min andel',
+  'By account':'Per konto',
+  'Year':'År',
+  'Quarter':'Kvartal',
+  'Month':'Måned',
+  'All years':'Alle år',
+  'All quarters':'Alle kvartaler',
+  'All months':'Alle måneder',
+  'Choose account':'Velg konto',
+  'Choose year':'Velg år',
+  'Choose quarter':'Velg kvartal',
+  'Choose month':'Velg måned',
+  'Reporting period':'Rapporteringsperiode',
+  // Dashboard
+  'Your money, your categories, and a clearer picture of how it all adds up.':'Pengene dine, kategoriene dine – og bedre oversikt over helheten.',
+  'Expense breakdown':'Utgiftsfordeling',
+  'Essential, non-essential and uncategorized':'Nødvendig, ikke nødvendig og ukategorisert',
+  'Detailed categories':'Detaljerte kategorier',
+  'See precisely where the money goes':'Se nøyaktig hvor pengene går',
+  'Total spending':'Totale utgifter',
+  'Excludes confirmed internal account transfers':'Uten bekreftede overføringer mellom egne kontoer',
+  'Essential':'Nødvendig',
+  'Non-essential':'Ikke nødvendig',
+  'Uncategorized':'Ukategorisert',
+  'Uncategorized / income':'Ukategorisert / inntekt',
+  'Groceries, mortgage, utilities & more':'Matvarer, boliglån, strøm med mer',
+  'Shopping, dining & entertainment':'Shopping, restaurantbesøk og underholdning',
+  'Review these transactions':'Gå gjennom disse transaksjonene',
+  'Spending over time':'Utgifter over tid',
+  'Spending statistics':'Utgiftsstatistikk',
+  'Spending chart display':'Diagramvisning',
+  'Expense breakdown':'Utgiftsfordeling',
+  'Bar':'Søyler',
+  'Line':'Linjer',
+  'Recent transactions':'Siste transaksjoner',
+  'Select a transaction for details; edit to correct its category':'Velg en transaksjon for detaljer, eller rediger kategorien',
+  'View all transactions →':'Se alle transaksjoner →',
+  'Last 4 months':'Siste 4 måneder',
+  'Last 4 quarters':'Siste 4 kvartaler',
+  'Last 4 years':'Siste 4 år',
+  'All recorded years':'Alle registrerte år',
+  'Curves are smoothed to highlight trends; each marker represents the exact period total.':'Kurvene er glattet ut for å vise trender. Hvert punkt viser den eksakte summen for perioden.',
+  'Empty periods are shown as zero.':'Perioder uten transaksjoner vises som null.',
+  'Import a statement to see spending trends.':'Importer en kontoutskrift for å se utgiftsutviklingen.',
+  'total expenses':'totale utgifter',
+  'by category':'per kategori',
+  'No spending in this period.':'Ingen utgifter i denne perioden.',
+  // Transaction ledger
+  'Review activity, fix categories and identify internal transfers.':'Se gjennom transaksjoner, korriger kategorier og identifiser interne overføringer.',
+  'Transaction ledger':'Transaksjonsoversikt',
+  'Search merchants or amounts':'Søk etter brukersted eller beløp',
+  'Search transactions':'Søk i transaksjoner',
+  'Filter category':'Filtrer kategori',
+  'Filter spending type':'Filtrer utgiftstype',
+  'All types':'Alle typer',
+  'All subcategories':'Alle underkategorier',
+  'Bank account number (optional)':'Kontonummer (valgfritt)',
+  '11-digit account number':'11-sifret kontonummer',
+  'Account identified':'Konto identifisert',
+  'An account identifier is already saved. Leave blank to keep it.':'Kontoidentifikator er allerede lagret. La feltet stå tomt for å beholde den.',
+  'Only an account fingerprint is stored locally; not the full number.':'Kun et lokalt kontoavtrykk lagres, ikke hele kontonummeret.',
+  'Used to recognize future imports.':'Brukes for å gjenkjenne fremtidige importer.',
+  'Matched to a previously imported bank account using its account identifier.':'Gjenkjent ved hjelp av kontonummer fra tidligere import.',
+  'Suggested from filename; first-time account types must be confirmed manually.':'Foreslått fra filnavnet. Kontotype må bekreftes første gang.',
+  'Bank account identifier detected':'Kontoidentifikator funnet',
+  'No reliable identifier found':'Ingen sikker kontoidentifikator funnet',
+  '— Choose category —':'— Velg kategori —',
+  'All categories':'Alle kategorier',
+  'Internal transfers':'Interne overføringer',
+  'Internal transfer':'Intern overføring',
+  'Transfers are automatically excluded when matching opposite-signed entries identify the same source and destination accounts, or when their descriptions clearly indicate a transfer. Review uncertain transactions manually.':'Overføringer mellom importerte kontoer holdes utenfor utgiftene når motpostene har samme fra-/til-konto, eller teksten tydelig viser en overføring. Kontroller usikre transaksjoner manuelt.',
+  'Incoming funds':'Innbetaling',
+  'Date':'Dato',
+  'Time':'Klokkeslett',
+  'Description':'Beskrivelse',
+  'Account':'Konto',
+  'Category / type':'Kategori / type',
+  'Category':'Kategori',
+  'Bank amount':'Beløp i banken',
+  'Amount':'Beløp',
+  'Reference':'Referanse',
+  'Balance after':'Saldo etterpå',
+  'Not provided':'Ikke oppgitt',
+  'Unknown category':'Ukjent kategori',
+  'Unknown account':'Ukjent konto',
+  'Unknown transaction':'Ukjent transaksjon',
+  'Edit':'Rediger',
+  'Expand details':'Vis detaljer',
+  'Click to expand details':'Klikk for detaljer',
+  'Additional details appear when provided in the imported CSV file.':'Flere detaljer vises når de finnes i den importerte CSV-filen.',
+  'No transactions match your current filters.':'Ingen transaksjoner samsvarer med filtrene.',
+  'Transfers are automatically excluded when matching opposite-signed entries identify the same source and destination accounts, or when their descriptions clearly indicate a transfer. Review uncertain transactions manually.':'Overføringer utelates automatisk bare når et tilsvarende beløp med motsatt fortegn finnes på en annen importert konto, og minst én beskrivelse tyder på en overføring. Kontroller transaksjonene og korriger eventuelle feil.',
+  // Accounts and categories
+  'Your accounts':'Kontoene dine',
+  'Control which transactions belong to each account and how shared spending is allocated.':'Bestem hvilke transaksjoner som tilhører hver konto, og hvordan fellesutgifter fordeles.',
+  'Accounts & ownership':'Kontoer og eierskap',
+  'Your share is used in “Me” reports. Household reports use 100% of each transaction regardless of ownership.':'Din andel brukes i visningen «Meg». Husholdningsoversikten viser 100 % av hver transaksjon, uansett eierskap.',
+  'Personal':'Personlig',
+  'Shared':'Felles',
+  'Other account':'Annen konto',
+  'Personal current account':'Personlig brukskonto',
+  'Shared household account':'Felles husholdningskonto',
+  'Shared mortgage account':'Felles boliglånskonto',
+  'Current / checking':'Brukskonto',
+  'Household expenses':'Husholdningsutgifter',
+  'Savings':'Sparing',
+  'Mortgage / loan':'Boliglån / lån',
+  'Credit card':'Kredittkort',
+  'Investment':'Investering',
+  'Other':'Annet',
+  '+ Add an account':'+ Legg til konto',
+  'How combined reporting works':'Slik fungerer samlet oversikt',
+  'An amount moving from your personal account into the joint account is not an expense. What gets spent from the joint account is the expense.':'En overføring fra din personlige konto til felleskontoen er ikke en utgift. Det er betalingen fra felleskontoen som regnes som en utgift.',
+  'For a 1,000 kr grocery purchase:':'For et matvarekjøp på 1 000 kr:',
+  'Household view':'Husholdningsvisning',
+  'Me at 50%':'Meg ved 50 %',
+  'My share at 50%':'Min andel ved 50 %',
+  "If a personal account has a monthly payment of 5,000 kr into the mortgage account, and the actual mortgage collection is recorded separately, only the bank's final collection counts as spending. If the collection isn't imported, you may need to classify the outbound payment manually.":'Hvis en personlig konto overfører 5 000 kr til boliglånskontoen hver måned, og selve lånetrekket er registrert separat, telles bare bankens endelige trekk som utgift. Hvis lånetrekket ikke er importert, kan det være nødvendig å kategorisere overføringen manuelt.',
+  'Make the categories yours':'Tilpass kategoriene',
+  'Teach Counts the way you classify merchants and expenses.':'Lær Counts hvordan du kategoriserer brukersteder og utgifter.',
+  'Remembered merchant rules':'Lagrede regler for brukersteder',
+  'A rule matches words in any transaction description—not just KIWI. For example,':'En regel finner samsvarende ord i alle transaksjonsbeskrivelser – ikke bare KIWI. Eksempelvis vil',
+  'applies to every matching branch or purchase. A longer, more specific phrase such as':'gjelde alle filialer eller kjøp som samsvarer. En lengre og mer spesifikk tekst, som',
+  'takes precedence over':'overstyrer',
+  'Rules apply to old and new imports; an individually edited transaction can keep its own category.':'Reglene gjelder både gamle og nye importer. Individuelt redigerte transaksjoner kan beholde sin egen kategori.',
+  'No custom rules yet. Edit a transaction and choose “Remember for this merchant”, or add a rule below.':'Ingen egendefinerte regler ennå. Rediger en transaksjon og velg «Husk for dette brukerstedet», eller legg til en regel nedenfor.',
+  'Merchant name / text':'Brukersted / tekst',
+  'e.g. KIWI or KIWI Adamst Ullevålsveien Oslo':'f.eks. KIWI eller KIWI Adamst Ullevålsveien Oslo',
+  'Use a short word to match broadly (Steam, MENY, KIWI), or a more specific phrase to make an exception. Matching ignores capital letters; it matches complete words, not partial words.':'Bruk et kort navn for generelle regler (Steam, MENY, KIWI), eller en lengre tekst for unntak. Store og små bokstaver behandles likt. Bare hele ord gir treff.',
+  'Spending type':'Utgiftstype',
+  'Specific category':'Underkategori',
+  'Save merchant rule':'Lagre regel',
+  'Expense categories':'Utgiftskategorier',
+  'Each category has a default type. You can select any category under Essential or Non-essential for individual transactions and merchant rules.':'Hver kategori har en standardtype. Du kan bruke alle underkategorier både under nødvendige og ikke nødvendige utgifter.',
+  'Custom category name':'Navn på egendefinert kategori',
+  'e.g. Pet supplies':'f.eks. Kjæledyrutgifter',
+  '+ Add category':'+ Legg til kategori',
+  'Delete':'Slett',
+  'Delete category':'Slett kategori',
+  'Removed category':'Slettet kategori',
+  // Default categories: user-defined names remain as entered.
+  'Groceries':'Matvarer',
+  'Housing & common costs':'Bolig og felleskostnader',
+  'Mortgage payments':'Boliglånsbetalinger',
+  'Electricity':'Strøm',
+  'Other utilities':'Andre faste utgifter',
+  'Healthcare':'Helse',
+  'Transport':'Transport',
+  'Shopping':'Shopping',
+  'Restaurants & cafés':'Restauranter og kafeer',
+  'Entertainment':'Underholdning',
+  'Subscriptions':'Abonnementer',
+  'Travel':'Reise',
+  'Other expenses':'Andre utgifter',
+  // File import and backups
+  'Your statements stay on this device. No bank login or API keys required.':'Kontoutskriftene blir på denne enheten. Ingen bankinnlogging eller API-nøkler kreves.',
+  'Import bank transactions':'Importer banktransaksjoner',
+  'Import a CSV statement from SpareBank 1 SMN or another bank. Create as many personal, shared, savings, loan, or other account profiles as you need in Accounts first. Column names can be mapped manually.':'Importer en CSV-kontoutskrift fra SpareBank 1 SMN eller en annen bank. Du kan opprette så mange personlige kontoer, felleskontoer, sparekontoer, lånekontoer eller andre kontoer du vil under «Kontoer». Kolonnene kan tilordnes manuelt.',
+  'Import transactions into':'Importer transaksjoner til',
+  '⇪  Choose a CSV statement':'⇪ Velg en CSV-kontoutskrift',
+  'Supports common Norwegian comma/semicolon-separated exports.':'Støtter vanlige norske CSV-filer med komma eller semikolon.',
+  'No real financial data is sent to ChatGPT or uploaded to a server. An editable column-mapping step appears before importing.':'Ingen personlige økonomidata sendes til ChatGPT eller lastes opp til en server. Du kan kontrollere kolonnene før import.',
+  'Download example CSV':'Last ned eksempel-CSV',
+  'Data management':'Datahåndtering',
+  "Your transactions and category rules are saved in this browser's local storage. Export a backup periodically, especially before clearing site data or changing devices.":'Transaksjonene og kategorireglene lagres lokalt i nettleseren. Ta sikkerhetskopi regelmessig, spesielt før du sletter nettleserdata eller bytter enhet.',
+  '↓ Download complete JSON backup':'↓ Last ned full JSON-sikkerhetskopi',
+  '↑ Restore JSON backup':'↑ Gjenopprett JSON-sikkerhetskopi',
+  'Clear all transactions':'Slett alle transaksjoner',
+  'Reset to example data':'Tilbakestill til eksempeldata',
+  'This prototype has no cloud backup. Browser storage may be deleted by clearing site data, using private browsing, or switching browsers. Backup files are unencrypted: store them securely.':'Prototypen har ingen skylagring. Nettleserdata kan forsvinne hvis du sletter nettstedsdata, bruker privat nettlesing eller bytter nettleser. Sikkerhetskopier er ikke kryptert og må oppbevares trygt.',
+  'Review your imported file':'Kontroller importfilen',
+  'Transaction date':'Transaksjonsdato',
+  'Signed amount (if present)':'Beløp med fortegn (hvis tilgjengelig)',
+  'Money out (if separate)':'Utgående beløp (egen kolonne)',
+  'Money in (if separate)':'Inngående beløp (egen kolonne)',
+  'Time of day (optional)':'Klokkeslett (valgfritt)',
+  'Reference (optional)':'Referanse (valgfritt)',
+  'Balance after transaction (optional)':'Saldo etter transaksjon (valgfritt)',
+  'Not present':'Ikke tilgjengelig',
+  'Import transactions':'Importer transaksjoner',
+  'Cancel':'Avbryt',
+  // Modals
+  'Edit transaction':'Rediger transaksjon',
+  'Close dialog':'Lukk vindu',
+  'Transfer handling':'Behandling av overføringer',
+  'currently treated as an internal transfer':'regnes nå som intern overføring',
+  'no confirmed match':'ingen bekreftet match',
+  'This is an internal transfer — exclude from expenses':'Dette er en intern overføring – utelat fra utgifter',
+  'This is not an internal transfer':'Dette er ikke en intern overføring',
+  'Remember this category for all transactions from':'Husk denne kategorien for alle transaksjoner fra',
+  'An individual category override takes precedence over automatic rules. Transfer settings are independent of categorization.':'Individuelle kategorivalg overstyrer automatiske regler. Overføringer håndteres uavhengig av kategoriseringen.',
+  'Save correction':'Lagre endring',
+  'Edit account':'Rediger konto',
+  'Add account':'Legg til konto',
+  "A shared account's personal-share percentage can be set anywhere from 0% to 100%.":'Andelen din av en felleskonto kan settes fra 0 % til 100 %.',
+  'Account name':'Kontonavn',
+  'Account type':'Kontotype',
+  'Ownership':'Eierskap',
+  'My share of account spending (%)':'Min andel av kontoens utgifter (%)',
+  'e.g. Joint household account':'f.eks. Felles husholdningskonto',
+  'Save account':'Lagre konto',
+  'Delete account':'Slett konto',
+  // Notifications and common errors
+  'Browser storage is full or unavailable. Export a backup before closing this page.':'Nettleserlagringen er full eller utilgjengelig. Eksporter en sikkerhetskopi før du lukker siden.',
+  'Could not find a header and transaction rows.':'Fant ingen kolonneoverskrifter og transaksjonsrader.',
+  'Select at least date, description and either signed amount or money-in/money-out columns.':'Velg minst dato, beskrivelse og enten beløp med fortegn eller inn-/utbetalingskolonner.',
+  'No usable transactions found. Check the mapping and date/amount formats.':'Fant ingen gyldige transaksjoner. Kontroller kolonnene og dato-/beløpsformatene.',
+  'This workspace currently holds example transactions. Replace all sample transactions with your imported bank data?':'Dette arbeidsområdet inneholder eksempeltransaksjoner. Vil du erstatte dem med dine importerte bankdata?',
+  'Backup downloaded. Store it securely.':'Sikkerhetskopi lastet ned. Oppbevar den trygt.',
+  'This category is used by transactions or rules. Reassign them before deleting.':'Kategorien brukes av transaksjoner eller regler. Endre disse før du sletter kategorien.',
+  'Remove this custom category?':'Vil du slette denne egendefinerte kategorien?',
+  'At least one account is required.':'Minst én konto er påkrevd.',
+  'Delete ALL transaction data from this browser? Account definitions and categorization rules will remain. Export a backup first if needed.':'Slette ALLE transaksjoner fra denne nettleseren? Kontoer og kategoriregler beholdes. Eksporter først en sikkerhetskopi ved behov.',
+  'Replace ALL local data with fictional example transactions? Existing data and rules will be lost unless backed up.':'Erstatte ALLE lokale data med fiktive eksempeltransaksjoner? Eksisterende data og regler går tapt uten sikkerhetskopi.',
+  'All transactions cleared.':'Alle transaksjoner er slettet.',
+  'Example transactions loaded.':'Eksempeltransaksjoner lastet inn.',
+  'Not a valid Counts v1 backup.':'Ugyldig Counts v1-sikkerhetskopi.',
+  'Replace all locally saved accounts, transactions and rules with this backup?':'Erstatte alle lokalt lagrede kontoer, transaksjoner og regler med denne sikkerhetskopien?',
+  'Backup successfully restored.':'Sikkerhetskopien er gjenopprettet.',
+  'Transaction updated and saved locally.':'Transaksjonen er oppdatert og lagret lokalt.',
+  'Enter a valid name and share between 0 and 100.':'Oppgi et gyldig kontonavn og en andel fra 0 til 100.',
+  'Account saved.':'Kontoen er lagret.',
+  'Enter merchant text and choose a valid category.':'Skriv inn et brukersted og velg en gyldig kategori.',
+  'Merchant rule saved.':'Brukerstedsregelen er lagret.',
+  'Category added.':'Kategori lagt til.',
+};
+// New batch-import interface labels (brand wording stays unchanged).
+Object.assign(NO_TRANSLATIONS,{
+  'Import multiple bank statements':'Importer flere kontoutskrifter',
+  'Select several CSV files at once. Counts detects common bank columns automatically and suggests the account from each filename. Check the account assignment before confirming.':'Velg flere CSV-filer samtidig. Counts gjenkjenner vanlige bankkolonner og foreslår konto basert på filnavnet. Kontroller kontotilknytningen før du bekrefter.',
+  '⇪ Select one or more CSV files':'⇪ Velg én eller flere CSV-filer',
+  'Select all of your accounts together (Ctrl/Shift-click if needed).':'Velg alle kontoene samtidig (bruk Ctrl/Shift ved behov).',
+  'CSV files are processed locally. Account suggestions are guesses, not bank verification. Nothing is uploaded.':'CSV-filene behandles lokalt. Kontoforslagene er gjetninger, ikke bankverifisering. Ingenting lastes opp.',
+  'Review files before importing':'Kontroller filene før import',
+  'Accounts and detected columns':'Kontoer og gjenkjente kolonner',
+  'Suggested account':'Foreslått konto',
+  'Create a new account':'Opprett ny konto',
+  'New account name':'Navn på ny konto',
+  'Account type':'Kontotype',
+  'Ownership':'Eierskap',
+  'Personal':'Personlig',
+  'Shared':'Felles',
+  'My share (%)':'Min andel (%)',
+  'Advanced: check column mapping':'Avansert: kontroller kolonnetilknytning',
+  'Review import results':'Kontroller importresultatet',
+  'Outgoing payments':'Utbetalinger',
+  'Incoming payments':'Innbetalinger',
+  'Rows detected':'Rader funnet',
+  'Valid transactions':'Gyldige transaksjoner',
+  'Invalid rows':'Ugyldige rader',
+  'No outgoing payments recognized. Please check whether the money-out column is mapped correctly.':'Ingen utbetalinger ble gjenkjent. Kontroller at kolonnen for utgående beløp er riktig tilordnet.',
+  'No amount column detected. Expand column mapping to select money in and/or money out.':'Ingen beløpskolonne funnet. Utvid kolonnetilknytningen for å velge inn- og/eller utgående beløp.',
+  'No valid transactions found. Check the date and amount columns.':'Ingen gyldige transaksjoner funnet. Kontroller kolonnene for dato og beløp.',
+  'Import all files':'Importer alle filer',
+  'Replace demo data on import':'Erstatt demodata ved import',
+  'Files imported':'Filer importert',
+  'Checking account':'Brukskonto',
+  'Household account':'Felleskonto',
+  'Mortgage account':'Boliglånskonto',
+  'Savings account':'Sparekonto',
+  'Credit card account':'Kredittkortkonto',
+  'Investment account':'Investeringskonto',
+  'Other account':'Annen konto',
+  'Detected from filename — please verify':'Foreslått ut fra filnavnet – kontroller dette',
+  'Please choose a destination for every file.':'Velg riktig konto for hver fil.',
+  'Current / checking':'Brukskonto',
+  'Household expenses':'Husholdningsutgifter',
+  'Savings':'Sparing',
+  'Mortgage / loan':'Boliglån / lån',
+  'Credit card':'Kredittkort',
+  'Investment':'Investering',
+  'Other':'Annet',
+  'Destination account (optional)':'Til konto (valgfritt)',
+  'Source account (optional)':'Fra konto (valgfritt)',
+  'File':'Fil',
+  'Data preview':'Forhåndsvisning av data',
+  'Review these three files before importing.':'Kontroller disse tre filene før import.',
+  'You can import additional files later; duplicates are skipped when they match previously imported transactions.':'Du kan importere flere filer senere. Doble transaksjoner hoppes over når de samsvarer med tidligere import.',
+});
+const originalText=new WeakMap();
+const originalAttributes=new WeakMap();
+function translateMessage(value){
+  const english=String(value??'');
+  if(language!=='no')return english;
+  if(Object.hasOwn(NO_TRANSLATIONS,english))return NO_TRANSLATIONS[english];
+  let m;
+  if((m=english.match(/^(Personal|Shared) · (Current \/ checking|Household expenses|Savings|Mortgage \/ loan|Credit card|Investment|Other) · (\d+) transactions$/))){
+    return `${translateMessage(m[1])} · ${translateMessage(m[2])} · ${m[3]} transaksjoner`;
+  }
+  if((m=english.match(/^(\d+)% mine$/)))return `${m[1]} % min andel`;
+  if((m=english.match(/^(Essential|Non-essential) \u00b7 (.+)$/)))return `${translateMessage(m[1])} · ${translateMessage(m[2])}`;
+  if((m=english.match(/^→ (Essential|Non-essential) \/ (.+)$/)))return `→ ${translateMessage(m[1])} / ${translateMessage(m[2])}`;
+  if(english==='● Uncategorized')return '● Ukategorisert';
+  if(english==='↔ Internal transfer')return '↔ Intern overføring';
+  if(english.startsWith('Essential, non-essential and uncategorized · '))return 'Nødvendig, ikke nødvendig og ukategorisert · '+translateMessage(english.split(' · ').slice(1).join(' · '));
+  if(english===', or')return ', eller';
+  if(english==='or')return 'eller';
+  if(english==='. Rules apply to old and new imports; an individually edited transaction can keep its own category.')return '. Reglene gjelder både gamle og nye importer. Individuelt redigerte transaksjoner kan beholde sin egen kategori.';
+  if(english.replace(/\s+/g,' ').trim()==='⇪ Select one or more CSV files')return '⇪ Velg én eller flere CSV-filer';
+  if((m=english.match(/^(\d+) file\(s\) selected\. Check the suggested account for each file\. You can create new accounts or expand the advanced mapping when needed\.$/)))return `${m[1]} fil(er) valgt. Kontroller kontoen som er foreslått for hver fil. Du kan opprette nye kontoer eller åpne avansert kolonnetilknytning ved behov.`;
+  if((m=english.match(/^(\d+) rows · (.+)$/)))return `${m[1]} rader · ${m[2]}`;
+  if((m=english.match(/^(\d+) invalid rows will be skipped\.$/)))return `${m[1]} ugyldige rader vil bli hoppet over.`;
+  if((m=english.match(/^(\d+) file\(s\) ready for review\. Confirm the account assignment before importing\.$/)))return `${m[1]} fil(er) klar(e) til kontroll. Bekreft hvilken konto hver fil tilhører.`;
+  if((m=english.match(/^Imported (\d+) transactions from (\d+) file\(s\)\. Skipped (\d+) duplicates and (\d+) invalid rows\.$/)))return `Importerte ${m[1]} transaksjoner fra ${m[2]} fil(er). Hoppet over ${m[3]} duplikater og ${m[4]} ugyldige rader.`;
+  if(english==='Browser storage is full. Nothing was imported; please export a backup or import fewer months.')return 'Nettleserlagringen er full. Ingenting er importert. Lag en sikkerhetskopi eller importer færre måneder.';
+  if(english==='Please select at most 30 CSV files per batch.')return 'Velg maksimalt 30 CSV-filer om gangen.';
+  if(english.replace(/\s+/g,' ').trim()==='⇪ Choose a CSV statement')return '⇪ Velg en CSV-kontoutskrift';
+  if((m=english.match(/^Column (\d+)$/)))return `Kolonne ${m[1]}`;
+  if((m=english.match(/^\((\d+) shown\)$/)))return `(${m[1]} vist)`;
+  if((m=english.match(/^(\d+) transactions$/)))return `${m[1]} transaksjoner`;
+  if((m=english.match(/^\((\d+(?:\.\d+)?)% share\)$/)))return `(${m[1]} % andel)`;
+  if((m=english.match(/^(.*) in spending still needs a category\. Edit transactions or create a reusable rule in Categories\.$/)))return `${m[1]} i utgifter mangler fortsatt kategori. Rediger transaksjonene eller opprett en regel under Kategorier.`;
+  if((m=english.match(/^(.*) · (\d+) data rows found\. Check that the column mappings match the file before importing\.$/)))return `${m[1]} · ${m[2]} datarader funnet. Kontroller at kolonnene stemmer før import.`;
+  if((m=english.match(/^(\d+) rows found\. Please verify column mapping\.$/)))return `${m[1]} rader funnet. Kontroller kolonnetilordningen.`;
+  if((m=english.match(/^Imported (\d+) new transactions\. Skipped (\d+) duplicates and (\d+) invalid rows\.$/)))return `Importerte ${m[1]} nye transaksjoner. Hoppet over ${m[2]} duplikater og ${m[3]} ugyldige rader.`;
+  if((m=english.match(/^Remove custom categorization rule for (.*)\?$/)))return `Slette kategoriregelen for ${m[1]}?`;
+  if((m=english.match(/^Delete (.*) and ALL its imported transactions\? This cannot be undone without a backup\.$/)))return `Slette ${m[1]} og ALLE tilhørende importerte transaksjoner? Dette kan ikke angres uten en sikkerhetskopi.`;
+  if(english.startsWith('Showing only transactions from '))return english.replace('Showing only transactions from ','Viser kun transaksjoner fra ').replace('. Internal transfers are excluded from spending, but remain visible in the ledger.','. Interne overføringer utelates fra utgifter, men vises fortsatt i transaksjonsoversikten.');
+  if(english==='Shows all imported account spending once. Matched internal transfers are excluded; shared expenses are shown at 100%.')return 'Alle importerte kontoutgifter telles én gang. Matchede interne overføringer utelates, og fellesutgifter vises med 100 %.';
+  if(english==='Personal transactions count at 100%; shared-account expenses are weighted using each account’s configured personal-share percentage.')return 'Personlige transaksjoner telles med 100 %. Utgifter fra felleskontoer vektes med den angitte andelen din.';
+  if(english.startsWith('Automatic ('))return english.replace('Automatic (','Automatisk (').replace('currently treated as an internal transfer','regnes nå som intern overføring').replace('no confirmed match','ingen bekreftet match');
+  if(english.startsWith('Remember this category for all transactions from '))return english.replace('Remember this category for all transactions from ','Husk denne kategorien for alle transaksjoner fra ');
+  if(english.startsWith('Could not restore: '))return english.replace('Could not restore: ','Kunne ikke gjenopprette: ');
+  if(english.startsWith('Import preview failed: '))return english.replace('Import preview failed: ','Kunne ikke forhåndsvise import: ');
+  if(english.startsWith('CSV file exceeds the 12 MB prototype limit.'))return 'CSV-filen er større enn grensen på 12 MB. Eksporter en kortere periode.';
+  if(english.startsWith('Show details for '))return english.replace('Show details for ','Vis detaljer for ');
+  if(english.startsWith('Smoothed spending trends; exact recorded totals shown at points.'))return english.replace('Smoothed spending trends; exact recorded totals shown at points.','Utgiftsutvikling med glattet kurve; eksakte periodetall vises i punktene.');
+  if(english.startsWith('No custom rules yet.'))return NO_TRANSLATIONS['No custom rules yet. Edit a transaction and choose “Remember for this merchant”, or add a rule below.'];
+  return english;
+}
+function applyTranslations(scope=document.body){
+  document.documentElement.lang=language==='no'?'nb':'en';
+  const tree=document.createTreeWalker(scope,NodeFilter.SHOW_TEXT);
+  while(tree.nextNode()){
+    const node=tree.currentNode,tag=node.parentElement?.tagName;
+    if(!node.nodeValue.trim()||tag==='SCRIPT'||tag==='STYLE')continue;
+    if(!originalText.has(node))originalText.set(node,node.nodeValue);
+    const source=originalText.get(node);
+    // Preserve whitespace from the original HTML/template.
+    const trimmed=source.trim();
+    if(!trimmed)continue;
+    const start=source.indexOf(trimmed),end=start+trimmed.length;
+    node.nodeValue=source.slice(0,start)+translateMessage(trimmed)+source.slice(end);
+  }
+  const elements=[scope,...scope.querySelectorAll('*')].filter?.(Boolean) || [scope,...scope.querySelectorAll('*')];
+  for(const el of elements){
+    if(!el.getAttribute)continue;
+    let refs=originalAttributes.get(el);
+    if(!refs){refs={};originalAttributes.set(el,refs);}
+    for(const attr of ['placeholder','aria-label','title']){
+      if(!el.hasAttribute(attr))continue;
+      if(!(attr in refs))refs[attr]=el.getAttribute(attr);
+      el.setAttribute(attr,translateMessage(refs[attr]));
+    }
+  }
+  const picker=document.getElementById('language-switch');
+  if(picker)picker.value=language;
+}
+function setLanguage(next){
+  language=next==='no'?'no':'en';
+  try{localStorage.setItem(LANGUAGE_KEY,language);}catch{}
+  render();
+}
+
+const root=document.getElementById('page-root');
+const modalLayer=document.getElementById('modal-layer');
+const modal=document.getElementById('modal');
+const toastWrap=document.getElementById('toasts');
+const pages={dashboard:'Dashboard',transactions:'Transactions',accounts:'Accounts',rules:'Categories',import:'Import & backup'};
+let state=loadState();
+let page='dashboard', perspective='household', accountView='personal', chosenMonth='m:'+currentMonth(),search='',categoryFilter='all',typeFilter='all',trendMode='bar';
+let pendingImport=null,importAccount='personal';
+
+function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const val=JSON.parse(raw);if(validateState(val)){
+  // Refresh standard palette even when a v0.2 workspace already exists; keep custom colors.
+  for(const c of val.categories){const preset=DEFAULT_CATEGORIES.find(x=>x.id===c.id);if(preset)c.color=preset.color;}
+  return val;
+}}}catch(e){console.warn('Could not load local data',e);}return demoState();}
+function validateState(obj){return obj&&obj.version===1&&Array.isArray(obj.accounts)&&Array.isArray(obj.categories)&&Array.isArray(obj.rules)&&Array.isArray(obj.transactions)&&obj.accounts.every(a=>typeof a.id==='string'&&typeof a.name==='string');}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));return true;}catch(e){toast('Browser storage is full or unavailable. Export a backup before closing this page.','error');return false;}}
+function latestMonth(){const arr=(state?.transactions||[]).map(t=>t.date.slice(0,7)).sort();return arr.at(-1)||currentMonth();}
+function currentMonth(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;}
+function h(s){return String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));}
+function fmt(cents){return new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',maximumFractionDigits:0}).format(cents/100);}
+function fmtExact(cents){return new Intl.NumberFormat('nb-NO',{style:'currency',currency:'NOK',minimumFractionDigits:2,maximumFractionDigits:2}).format(cents/100);}
+function dateFmt(date){try{return new Intl.DateTimeFormat(language==='no'?'nb-NO':'en-GB',{day:'numeric',month:'short',year:'numeric'}).format(new Date(date+'T12:00:00Z'));}catch{return date;}}
+function monthFmt(month){const [y,m]=month.split('-');return new Intl.DateTimeFormat(language==='no'?'nb-NO':'en-GB',{month:'short',year:'numeric'}).format(new Date(Date.UTC(Number(y),Number(m)-1,1)));}
+function months(){return [...new Set(state.transactions.map(t=>t.date.slice(0,7)))].sort().reverse();}
+function periods(){
+  const ms=months(),years=[...new Set(ms.map(m=>m.slice(0,4)))];
+  const quarters=[...new Set(ms.map(m=>m.slice(0,4)+'-Q'+Math.ceil(Number(m.slice(5,7))/3)))];
+  return {ms,years,quarters};
+}
+function toast(message,type='ok'){const el=document.createElement('div');el.className='toast'+(type==='error'?' error':'');el.textContent=message;toastWrap.append(el);originalText.set(el.firstChild,String(message));applyTranslations(el);setTimeout(()=>el.remove(),5200);}
+function selectedData(period=chosenMonth){return derive(state.transactions,state.accounts,state.categories,state.rules,perspective,accountView,period);}
+function sel(options,selected){return options.map(([v,label])=>`<option value="${h(v)}" ${String(v)===String(selected)?'selected':''}>${h(label)}</option>`).join('');}
+function categoryOptions(selected='',includeNone=true){return (includeNone?`<option value="">Uncategorized / income</option>`:'')+state.categories.map(c=>`<option value="${h(c.id)}" ${c.id===selected?'selected':''}>${c.group==='essential'?'Essential':'Non-essential'} · ${h(c.name)}</option>`).join('');}
+function groupOptions(selected='essential',includeNone=false){return `${includeNone?`<option value="" ${selected===''?'selected':''}>Uncategorized / income</option>`:''}<option value="essential" ${selected==='essential'?'selected':''}>Essential</option><option value="discretionary" ${selected==='discretionary'?'selected':''}>Non-essential</option>`;}
+function childCategoryOptions(group,selected=''){return state.categories.map(c=>`<option value="${h(c.id)}" ${c.id===selected?'selected':''}>${h(c.name)}</option>`).join('');}
+function controls(){return `<div class="perspective"><button data-perspective="household" class="${perspective==='household'?'active':''}">Household</button><button data-perspective="share" class="${perspective==='share'?'active':''}">Me</button><button data-perspective="account" class="${perspective==='account'?'active':''}">By account</button>${perspective==='account'?`<select id="account-filter" class="select account-filter" aria-label="Choose account">${sel(state.accounts.map(a=>[a.id,a.name]),accountView)}</select>`:''}</div>`;}
+function monthSelect(){
+  // Year -> quarter -> month. Changing a parent resets child filters.
+  const {years}=periods(),nowYear=String(new Date().getFullYear());
+  const year=chosenMonth==='all'?'all':chosenMonth.slice(2,6);
+  const quarter=chosenMonth.startsWith('q:')?chosenMonth.slice(-1):chosenMonth.startsWith('m:')?String(Math.ceil(Number(chosenMonth.slice(7,9))/3)):'all';
+  const month=chosenMonth.startsWith('m:')?chosenMonth.slice(7,9):'all';
+  const availableYears=[...new Set([...years,nowYear])].sort().reverse();
+  const yearList=[['all','All years'],...availableYears.map(y=>[y,y])];
+  const qList=[['all','All quarters'],...['1','2','3','4'].map(q=>[q,'Q'+q])];
+  const quarterIndex=Number(quarter);
+  const validMonths=quarter==='all'?Array.from({length:12},(_,i)=>i+1):Array.from({length:3},(_,i)=>(quarterIndex-1)*3+i+1);
+  const mList=[['all','All months'],...validMonths.map(m=>[String(m).padStart(2,'0'),new Intl.DateTimeFormat(language==='no'?'nb-NO':'en-GB',{month:'long'}).format(new Date(2000,m-1,1))])];
+  return `<div class="period-picker" role="group" aria-label="Reporting period"><label>Year<select class="select" id="period-year" aria-label="Choose year">${sel(yearList,year)}</select></label><span class="period-chevron" aria-hidden="true">›</span><label>Quarter<select class="select" id="period-quarter" aria-label="Choose quarter" ${year==='all'?'disabled':''}>${sel(qList,quarter)}</select></label><span class="period-chevron" aria-hidden="true">›</span><label>Month<select class="select" id="period-month" aria-label="Choose month" ${year==='all'?'disabled':''}>${sel(mList,month)}</select></label></div>`;
+}
+function setPeriod(year,quarter='all',month='all'){
+  if(year==='all'){chosenMonth='all';return;}
+  if(month!=='all')chosenMonth='m:'+year+'-'+month;
+  else if(quarter!=='all')chosenMonth='q:'+year+'-Q'+quarter;
+  else chosenMonth='y:'+year;
+}
+
+function note(){if(perspective==='household')return 'Shows all imported account spending once. Matched internal transfers are excluded; shared expenses are shown at 100%.';if(perspective==='share')return 'Personal transactions count at 100%; shared-account expenses are weighted using each account’s configured personal-share percentage.';return `Showing only transactions from ${h(state.accounts.find(a=>a.id===accountView)?.name||'the chosen account')}. Internal transfers are excluded from spending, but remain visible in the ledger.`;}
+function kpi(title,value,foot,accent=''){return `<div class="card kpi"><div class="kpi-label"><span>${h(title)}</span><span class="kpi-icon">✦</span></div><div class="kpi-value ${accent}">${fmt(value)}</div><div class="kpi-foot">${h(foot)}</div></div>`;}
+function intro(title,sub,right=''){return `<div class="page-head"><div><div class="eyebrow">FINANCIAL CLARITY</div><h1>${h(title)}</h1><p class="subtext">${h(sub)}</p></div>${right?`<div class="picker">${right}</div>`:''}</div>`;}
+function render(){
+  document.getElementById('page-crumb').textContent=pages[page];
+  document.getElementById('demo-label').style.display=state.demo?'inline':'none';
+  document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+  if(page==='dashboard')root.innerHTML=renderDashboard();
+  else if(page==='transactions')root.innerHTML=renderTransactions();
+  else if(page==='accounts')root.innerHTML=renderAccounts();
+  else if(page==='rules')root.innerHTML=renderRules();
+  else root.innerHTML=renderImport();
+  applyTranslations();
+}
+function ring(values,total,caption){
+  const active=values.filter(x=>x.value>0),overall=Math.max(1,total);
+  // CSS conic gradients advance clockwise from 12 o'clock. Reversing the
+  // gradient stops gives a clockwise-independent visual reading: the first
+  // (largest) segment begins at 12 o'clock and progresses counterclockwise.
+  let cursor=0;
+  const gradient=[...active].reverse().map(x=>{
+    const from=cursor;cursor+=x.value/overall*100;
+    return `${x.color} ${from.toFixed(3)}% ${cursor.toFixed(3)}%`;
+  }).join(',');
+  return `<div class="donut" role="img" aria-label="${h(caption)}: ${h(active.map(x=>x.name+': '+fmt(x.value)).join('; '))}" style="background:${gradient?`conic-gradient(${gradient})`:'#30414b'}"><div class="donut-center"><strong>${fmt(total)}</strong><span>${h(caption)}</span></div></div>`;
+}
+function categoryLegend(vals,total){
+  return `<div class="cat-list">${vals.filter(v=>v.value>0).map(v=>`<div class="cat-row"><span title="${h(v.name)}"><i class="dot" style="background:${h(v.color)}"></i>${h(v.name)}</span><strong>${h(fmt(v.value))} <small>· ${Math.round(v.value/Math.max(1,total)*100)}%</small></strong></div>`).join('')||'<span class="muted-mini">No spending in this period.</span>'}</div>`;
+}
+function donut(data,mode='groups'){
+  const groups=[{name:'Essential',value:data.essential,color:'#54d2b4'},{name:'Non-essential',value:data.discretionary,color:'#e87881'},{name:'Uncategorized',value:data.uncategorized,color:'#8293a2'}];
+  const detailed=[...state.categories.map(c=>({name:c.name,value:data.categoryTotals[c.id]||0,color:c.color})),groups[2]];
+  // The legend's descending order now precisely matches the anticlockwise slices.
+  const vals=(mode==='groups'?groups:detailed).sort((a,b)=>b.value-a.value);
+  const total=vals.reduce((n,x)=>n+x.value,0);
+  const caption=mode==='groups'?'total expenses':'by category';
+  return `<div class="category-visual-wrapper"><div class="category-visual">${ring(vals,total,caption)}${categoryLegend(vals,total)}</div></div>`;
+}
+const TREND_SERIES=[
+  {key:'essential',label:'Essential',color:'#54d2b4'},
+  {key:'discretionary',label:'Non-essential',color:'#e87881'},
+  {key:'uncategorized',label:'Uncategorized',color:'#8293a2'}
+];
+function trendBuckets(period,existingMonths=[]){
+  // Always include four consecutive complete calendar periods ending with the
+  // chosen month, quarter or year, even when no imported transactions exist.
+  if(period.startsWith('m:')){
+    const [y,m]=period.slice(2).split('-').map(Number);
+    return Array.from({length:4},(_,i)=>{
+      const d=new Date(Date.UTC(y,m-1-3+i,1));
+      const mkey=`${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}`;
+      return {key:'m:'+mkey,label:monthFmt(mkey),period:'month'};
+    });
+  }
+  if(period.startsWith('q:')){
+    const match=period.match(/^q:(\d{4})-Q([1-4])$/);
+    if(match){
+      const endIndex=Number(match[1])*4+Number(match[2])-1;
+      return Array.from({length:4},(_,i)=>{
+        const idx=endIndex-3+i,year=Math.floor(idx/4),quarter=idx%4+1;
+        return {key:`q:${year}-Q${quarter}`,label:`Q${quarter} ${year}`,period:'quarter'};
+      });
+    }
+  }
+  if(period.startsWith('y:')){
+    const y=Number(period.slice(2));
+    return Array.from({length:4},(_,i)=>({key:`y:${y-3+i}`,label:String(y-3+i),period:'year'}));
+  }
+  // All time: one data point per recorded year, chronologically, filling gaps.
+  const ys=existingMonths.map(m=>Number(m.slice(0,4))).filter(Number.isFinite);
+  if(!ys.length)return [];
+  const min=Math.min(...ys),max=Math.max(...ys);
+  return Array.from({length:max-min+1},(_,i)=>({key:`y:${min+i}`,label:String(min+i),period:'year'}));
+}
+function trendData(){
+  const buckets=trendBuckets(chosenMonth,months());
+  return buckets.map(b=>({...b,...selectedData(b.key)}));
+}
+function trendPeriodLabel(){
+  if(chosenMonth.startsWith('m:'))return 'Last 4 months';
+  if(chosenMonth.startsWith('q:'))return 'Last 4 quarters';
+  if(chosenMonth.startsWith('y:'))return 'Last 4 years';
+  return 'All recorded years';
+}
+function axisLabel(cents){return Math.round(cents/100).toLocaleString('nb-NO')+' kr';}
+function axisTicks(max){return [1,.75,.5,.25,0].map(v=>axisLabel(max*v));}
+function trendBarChart(data){
+  const max=Math.max(1,...data.map(d=>Math.max(0,d.essential+d.discretionary+d.uncategorized)));
+  const bars=data.map(d=>{
+    return `<div class="bar-wrap">${TREND_SERIES.map(series=>{
+      const value=d[series.key];
+      const title=`${d.label} · ${series.label}: ${fmt(value)}`;
+      return `<div class="bar ${series.key}" style="height:${Math.max(0,value/max*190)}px;background:${series.color}" data-tooltip="${h(title)}" title="${h(title)}" role="img" aria-label="${h(title)}"></div>`;
+    }).join('')}</div>`;
+  }).join('');
+  return `<div class="trend-plot"><div class="trend-y-axis">${axisTicks(max).map(n=>`<span>${h(n)}</span>`).join('')}</div><div class="trend-chart-column"><div class="chart-bars">${bars}</div><div class="bar-labels">${data.map(d=>`<span>${h(d.label)}</span>`).join('')}</div></div></div>`;
+}
+function smoothPath(points){
+  // Monotone Hermite cubic interpolation provides a smooth visual trend while
+  // limiting overshoot between the actual period totals.
+  if(points.length===0)return '';
+  if(points.length===1)return `M${points[0].x} ${points[0].y}`;
+  const slopes=points.slice(1).map((p,i)=>(p.y-points[i].y)/(p.x-points[i].x));
+  const tangents=points.map((_,i)=>i===0?slopes[0]:i===points.length-1?slopes.at(-1):(slopes[i-1]*slopes[i]<=0?0:2*slopes[i-1]*slopes[i]/(slopes[i-1]+slopes[i])));
+  let path=`M${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`;
+  for(let i=0;i<points.length-1;i++){
+    const a=points[i],b=points[i+1],dx=(b.x-a.x)/3;
+    path+=` C${(a.x+dx).toFixed(2)} ${(a.y+tangents[i]*dx).toFixed(2)} ${(b.x-dx).toFixed(2)} ${(b.y-tangents[i+1]*dx).toFixed(2)} ${b.x.toFixed(2)} ${b.y.toFixed(2)}`;
+  }
+  return path;
+}
+function trendLineChart(data){
+  const W=940,H=248,padX=85,padTop=13,padBottom=15;
+  const chartH=H-padTop-padBottom;
+  const max=Math.max(1,...data.map(d=>Math.max(0,d.essential+d.discretionary+d.uncategorized)));
+  const x=i=>padX+(W-2*padX)*(data.length===1?0.5:i/(data.length-1));
+  const y=v=>padTop+chartH*(1-Math.max(0,v)/max);
+  const grid=[0,.25,.5,.75,1].map(f=>`<line x1="${padX}" x2="${W-padX}" y1="${(padTop+chartH*f).toFixed(2)}" y2="${(padTop+chartH*f).toFixed(2)}" stroke="#293945" stroke-width="1"/><text x="${padX-11}" y="${(padTop+chartH*f+4).toFixed(2)}" text-anchor="end" font-size="12" fill="#9ab1bd">${h(axisLabel((1-f)*max))}</text>`).join('');
+  const lines=TREND_SERIES.map(series=>{
+    const pts=data.map((d,i)=>({x:x(i),y:y(d[series.key]),amount:d[series.key],label:d.label}));
+    const path=smoothPath(pts);
+    const nodes=pts.map(v=>`<circle cx="${v.x.toFixed(2)}" cy="${v.y.toFixed(2)}" r="5" fill="${series.color}" stroke="#121e29" stroke-width="2"><title>${h(v.label)} · ${h(series.label)}: ${h(fmt(v.amount))}</title></circle>`).join('');
+    return `<path d="${path}" fill="none" stroke="${series.color}" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/><g>${nodes}</g>`;
+  }).join('');
+  const desc=TREND_SERIES.map(s=>s.label+': '+data.map(d=>d.label+' '+fmt(d[s.key])).join(', ')).join('; ');
+  return `<div class="trend-line-wrap"><svg class="trend-line" viewBox="0 0 ${W} ${H}" role="img" aria-label="Smoothed spending trends; exact recorded totals shown at points. ${h(desc)}" xmlns="http://www.w3.org/2000/svg">${grid}${lines}</svg></div><div class="trend-line-labels">${data.map(d=>`<span>${h(d.label)}</span>`).join('')}</div>`;
+}
+function trendChart(){
+  const data=trendData();
+  if(!data.length)return `<div class="empty">Import a statement to see spending trends.</div>`;
+  return (trendMode==='line'?trendLineChart(data):trendBarChart(data))+
+    `<div class="legend">${TREND_SERIES.map(s=>`<span><i class="dot" style="background:${s.color}"></i>${h(s.label)}</span>`).join('')}</div>`+
+    `<p class="trend-note">${trendMode==='line'?'Curves are smoothed to highlight trends; each marker represents the exact period total. ':''}Empty periods are shown as zero.</p>`;
+}
+function renderDashboard(){
+  const d=selectedData();
+  return `${intro("How ya goin\' count",'Your money, your categories, and a clearer picture of how it all adds up.',monthSelect())}${controls()}<p class="view-note">${note()}</p>
+  <section class="visual-grid breakdown-grid" aria-label="Expense breakdown"><div class="card"><div class="card-head"><div><h2 class="card-title">Expense breakdown</h2><div class="card-sub">Essential, non-essential and uncategorized</div></div></div>${donut(d,'groups')}</div><div class="card"><div class="card-head"><div><h2 class="card-title">Detailed categories</h2><div class="card-sub">See precisely where the money goes</div></div></div>${donut(d,'details')}</div></section>
+  <section class="stats-section" aria-label="Spending statistics"><div class="card kpi-total">${kpi('Total spending',d.spending,'Excludes confirmed internal account transfers')}</div><div class="kpis kpis-three">${kpi('Essential',d.essential,'Groceries, mortgage, utilities & more','accent-teal')}${kpi('Non-essential',d.discretionary,'Shopping, dining & entertainment','accent-red')}${kpi('Uncategorized',d.uncategorized,'Review these transactions','accent-blue')}</div></section>
+  <section class="card trend-card"><div class="card-head"><div><h2 class="card-title">Spending over time</h2><div class="card-sub">Essential, non-essential and uncategorized · ${h(trendPeriodLabel())}</div></div><div class="trend-head-actions"><span class="chip">${h(trendPeriodLabel())}</span><div class="trend-toggle" role="group" aria-label="Spending chart display"><button class="btn btn-sm ${trendMode==='bar'?'active':''}" data-trend-mode="bar" aria-pressed="${trendMode==='bar'}">Bar</button><button class="btn btn-sm ${trendMode==='line'?'active':''}" data-trend-mode="line" aria-pressed="${trendMode==='line'}">Line</button></div></div></div>${trendChart()}</section>
+  <section class="card"><div class="transactions-head"><div><h2 class="card-title">Recent transactions</h2><div class="card-sub">Select a transaction for details; edit to correct its category</div></div><button class="btn btn-sm" data-page-link="transactions">View all transactions →</button></div>${transactionTable(d.visible.slice(0,8))}</section>${d.uncategorized>0?`<div class="notice">${fmt(d.uncategorized)} in spending still needs a category. Edit transactions or create a reusable rule in Categories.</div>`:''}`;
+}
+function transactionTable(items){
+  if(!items.length)return '<div class="empty">No transactions match your current filters.</div>';
+  return `<div class="table-wrap"><table><thead><tr><th>Date</th><th>Description</th><th>Account</th><th>Category / type</th><th style="text-align:right">Bank amount</th><th></th></tr></thead><tbody>${items.map(t=>{
+    const c=state.categories.find(x=>x.id===t.category);
+    const label=t.transfer?'<span class="cat-tag transfer">↔ Internal transfer</span>':t.category?`<span class="cat-tag colored" style="--category-color:${h(c?.color||'#a9bbc6')}"><i class="dot" style="background:${h(c?.color||'#a9bbc6')}"></i>${h(c?.name||'Unknown category')}</span>`:t.amount>0?'<span class="cat-tag">Incoming funds</span>':'<span class="cat-tag unknown">● Uncategorized</span>';
+    const sub=perspective==='share'&&t.fraction!==1?` <span class="muted-mini">(${t.fraction*100}% share)</span>`:'';
+    const detail=[['Date',dateFmt(t.date)],['Time',t.time||'Not provided'],['Account',t.account.name],['Amount',fmtExact(t.amount)],['Category',t.transfer?'Internal transfer':c?.name||(t.amount>0?'Incoming funds':'Uncategorized')],['Reference',t.reference||'Not provided'],['Balance after',t.balance!==null&&t.balance!==undefined?fmtExact(t.balance):'Not provided']];
+    const safeId=h(t.id);
+    return `<tr class="tx-row" data-row-id="${safeId}" tabindex="0" aria-expanded="false" aria-label="Show details for ${h(t.description)}" title="Click to expand details"><td class="muted">${h(dateFmt(t.date))}</td><td><div class="merchant" title="${h(t.description)}">${h(t.description)}</div></td><td class="muted">${h(t.account.name)}</td><td>${label}${sub}</td><td style="text-align:right" class="${t.amount>=0?'amount-pos':'amount-neg'}">${h(fmtExact(t.amount))}</td><td style="text-align:right;white-space:nowrap"><button class="btn-link" data-edit="${safeId}">Edit</button><button class="btn-plain expand-icon" data-expand="${safeId}" aria-label="Expand details">⌄</button></td></tr><tr class="tx-details hidden" data-details="${safeId}"><td colspan="6"><div class="details-grid">${detail.map(([name,value])=>`<div><span>${h(name)}</span><strong>${h(value)}</strong></div>`).join('')}</div><p class="mini-hint">Additional details appear when provided in the imported CSV file.</p></td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+function renderTransactions(){let list=selectedData().visible;
+  if(search.trim()){const v=search.toLowerCase();list=list.filter(t=>t.description.toLowerCase().includes(v)||t.account.name.toLowerCase().includes(v)||String(t.amount/100).includes(v));}
+  if(typeFilter!=='all')list=list.filter(t=>typeFilter==='transfers'?t.transfer:typeFilter==='uncategorized'?!t.category&&t.amount<0&&!t.transfer:!t.transfer&&t.amount<0&&t.group===typeFilter);
+  if(categoryFilter!=='all')list=list.filter(t=>t.category===categoryFilter&&!t.transfer);
+  return `${intro('Transactions','Review activity, fix categories and identify internal transfers.',monthSelect())}${controls()}<p class="view-note">${note()}</p><section class="card"><div class="transactions-head"><h2 class="card-title">Transaction ledger <span class="muted-mini">(${list.length} shown)</span></h2><div class="transactions-actions"><input class="input" id="search-transactions" type="search" placeholder="Search merchants or amounts" value="${h(search)}" aria-label="Search transactions"><select class="select" id="type-filter" aria-label="Filter spending type">${sel([['all','All types'],['essential','Essential'],['discretionary','Non-essential'],['uncategorized','Uncategorized'],['transfers','Internal transfers']],typeFilter)}</select><select class="select" id="category-filter" aria-label="Filter category">${sel([['all','All subcategories'],...state.categories.map(c=>[c.id,c.name])],categoryFilter)}</select></div></div>${transactionTable(list)}</section><div class="notice">Transfers are automatically excluded when matching opposite-signed entries identify the same source and destination accounts, or when their descriptions clearly indicate a transfer. Review uncertain transactions manually.</div>`;
+}
+const accountTypes={checking:'Current / checking',household:'Household expenses',savings:'Savings',mortgage:'Mortgage / loan',credit:'Credit card',investment:'Investment',other:'Other'};
+function renderAccounts(){return `${intro('Your accounts','Control which transactions belong to each account and how shared spending is allocated.')}${controls()}<div class="split"><section class="card"><h2 class="section-title">Accounts & ownership</h2><p class="mini-hint">Your share is used in “My share” reports. Household reports use 100% of each transaction regardless of ownership.</p>${state.accounts.map(a=>{
+  const count=state.transactions.filter(t=>t.accountId===a.id).length;
+  return `<div class="list-item"><div class="account-row"><div class="account-icon">${a.role==='personal'?'♙':'⌂'}</div><div class="account-row-body"><strong>${h(a.name)}</strong><small>${a.role==='personal'?'Personal':'Shared'} · ${h(accountTypes[a.type]||'Other account')} · ${count} transactions${a.bankKey?' · Account identified':''}</small></div></div><div class="list-item-controls"><span class="pill">${Number(a.share)}% mine</span><button class="btn btn-sm" data-edit-account="${h(a.id)}">Edit</button></div></div>`;
+}).join('')}<div class="form-actions"><button class="btn btn-primary" id="add-account">+ Add an account</button></div></section><section class="card"><h2 class="section-title">How combined reporting works</h2><div class="notice">An amount moving from your personal account into the joint account is not an expense. What gets spent from the joint account is the expense.</div><p class="subtext">For a 1,000 kr grocery purchase:</p><div class="list-item"><b>Household view</b><b>${fmt(100000)}</b></div><div class="list-item"><b>Me at 50%</b><b>${fmt(50000)}</b></div><p class="mini-hint" style="margin-top:16px">If a personal account has a monthly payment of 5,000 kr into the mortgage account, and the actual mortgage collection is recorded separately, only the bank's final collection counts as spending. If the collection isn't imported, you may need to classify the outbound payment manually.</p></section></div>`;}
+function renderRules(){return `${intro('Make the categories yours','Teach Counts the way you classify merchants and expenses.')}<div class="split"><div class="stack"><section class="card"><h2 class="section-title">Remembered merchant rules</h2><p class="mini-hint">A rule matches words in any transaction description—not just KIWI. For example, <b>KIWI</b>, <b>MENY</b>, or <b>Steam</b> applies to every matching branch or purchase. A longer, more specific phrase such as <b>KIWI Majorstuen 420</b> takes precedence over <b>KIWI</b>. Rules apply to old and new imports; an individually edited transaction can keep its own category.</p>${state.rules.length?state.rules.map(r=>{const c=state.categories.find(c=>c.id===r.category);return `<div class="list-item"><div><strong>${h(r.merchant)}</strong><small>→ ${(r.group||c?.group)==='essential'?'Essential':'Non-essential'} / ${h(c?.name||'Removed category')}</small></div><button class="btn btn-sm btn-danger" data-delete-rule="${h(r.merchant)}">Delete</button></div>`;}).join(''):'<div class="rules-empty">No custom rules yet. Edit a transaction and choose “Remember for this merchant”, or add a rule below.</div>'}<form id="new-rule-form" style="margin-top:20px"><div class="form-row"><label for="rule-merchant">Merchant name / text</label><input id="rule-merchant" name="merchant" class="input wide" placeholder="e.g. KIWI or KIWI Adamst Ullevålsveien Oslo" required><p class="mini-hint">Use a short word to match broadly (Steam, MENY, KIWI), or a more specific phrase to make an exception. Matching ignores capital letters; it matches complete words, not partial words.</p></div><div class="form-row"><label for="rule-group">Spending type</label><select id="rule-group" name="group" class="select">${groupOptions('essential')}</select></div><div class="form-row"><label for="rule-category">Specific category</label><select id="rule-category" name="category" class="select">${childCategoryOptions('essential')}</select></div><button class="btn btn-primary" type="submit">Save merchant rule</button></form></section></div><div class="stack"><section class="card"><h2 class="section-title">Expense categories</h2><p class="mini-hint">Each category has a default type. You can select any category under Essential or Non-essential for individual transactions and merchant rules.</p>${state.categories.map(c=>`<div class="category-row"><span class="color-dot" style="background:${h(c.color)}"></span><span class="label">${h(c.name)}</span><span class="group-badge ${c.group==='discretionary'?'discretionary':''}">${c.group==='essential'?'Essential':'Non-essential'}</span>${!DEFAULT_CATEGORIES.some(x=>x.id===c.id)?`<button class="btn-plain" data-delete-category="${h(c.id)}" title="Delete category">✕</button>`:''}</div>`).join('')}<div class="separator"></div><form id="new-category-form"><div class="form-row"><label for="new-category-name">Custom category name</label><input class="input" id="new-category-name" name="name" placeholder="e.g. Pet supplies" maxlength="38" required></div><div class="form-row"><label for="new-category-group">Spending type</label><select class="select" id="new-category-group" name="group">${groupOptions('essential')}</select></div><button class="btn btn-primary" type="submit">+ Add category</button></form></section></div></div>`;}
+
+// A batch is staged in memory only. Financial records are not uploaded.
+function mapUsable(m){return m.date>=0&&m.desc>=0&&(m.amount>=0||m.debit>=0||m.credit>=0);}
+function proposeAccount(filename,accounts=state.accounts){
+  const name=filename.replace(/\.[^.]+$/,'').replace(/[ _]+/g,' ').trim();
+  const clean=toNorm(name);
+  let type='checking',role='personal',share=100,preferredId=null;
+  if(/trekkonto|bolig.*lan|mortgage|l[aå]nekonto|l[aå]netrekk/.test(clean)){type='mortgage';role='shared';share=50;preferredId='loan';}
+  else if(/felles|joint|shared|husstand/.test(clean)){type='household';role='shared';share=50;preferredId='shared';}
+  else if(/bruks|brukskonto|loennskonto|lonnskonto|personal|privat|current/.test(clean)){type='checking';role='personal';share=100;preferredId='personal';}
+  else if(/spar|saving|reserve|buffer/.test(clean)){type='savings';}
+  else if(/kreditt|credit|mastercard|visa/.test(clean)){type='credit';}
+  else if(/invest|aksje|fond|portfolio/.test(clean)){type='investment';}
+  const identical=accounts.find(a=>toNorm(a.name)===clean);
+  const known=preferredId?accounts.find(a=>a.id===preferredId):null;
+  return {selected:(identical||known)?.id||'new',name:name.slice(0,52)||'New account',type,role,share};
+}
+function mappingSelect(key,label,headers,value,fileIndex){
+  return `<div class="form-row"><label for="map-${fileIndex}-${h(key)}">${h(label)}</label><select id="map-${fileIndex}-${h(key)}" class="select batch-map-field" data-file-index="${fileIndex}" data-field="${h(key)}"><option value="-1">Not present</option>${headers.map((x,i)=>`<option value="${i}" ${i===value?'selected':''}>${h(x||`Column ${i+1}`)}</option>`).join('')}</select></div>`;
+}
+function previewFile(p){
+  if(!mapUsable(p.mapping))return {valid:0,invalid:p.rows.length,out:0,in:0,expense:0,income:0};
+  const {records,errors}=csvToTransactions(p.rows,p.mapping,'preview');
+  return {valid:records.length,invalid:errors.length,out:records.filter(x=>x.amount<0).length,in:records.filter(x=>x.amount>0).length,
+    expense:-records.filter(x=>x.amount<0).reduce((a,x)=>a+x.amount,0),income:records.filter(x=>x.amount>0).reduce((a,x)=>a+x.amount,0)};
+}
+function importReviewFile(p,i){
+  const stats=previewFile(p),choice=p.selected;
+  const typeOpts=sel(Object.entries(accountTypes).map(([k,v])=>[k,v]),p.type);
+  const accountChoices=sel([...state.accounts.map(a=>[a.id,a.name]),['new','+ Create a new account']],choice);
+  const warnings=[];
+  if(!mapUsable(p.mapping))warnings.push('No amount column detected. Expand column mapping to select money in and/or money out.');
+  if(!stats.valid)warnings.push('No valid transactions found. Check the date and amount columns.');
+  else if(stats.out===0&&p.headers.some(x=>toNorm(x)==='ut'||toNorm(x).includes('debet')))warnings.push('No outgoing payments recognized. Please check whether the money-out column is mapped correctly.');
+  const accountFields=choice==='new'?`<div class="batch-account">
+   <div class="form-row"><label for="new-name-${i}">New account name</label><input class="input wide batch-new-name" id="new-name-${i}" data-file-index="${i}" value="${h(p.name)}" maxlength="52" required></div>
+   <div class="form-row"><label for="new-type-${i}">Account type</label><select class="select batch-new-type" id="new-type-${i}" data-file-index="${i}">${typeOpts}</select></div>
+   <div class="form-row"><label for="new-role-${i}">Ownership</label><select class="select batch-new-role" id="new-role-${i}" data-file-index="${i}">${sel([['personal','Personal'],['shared','Shared']],p.role)}</select></div>
+   <div class="form-row"><label for="new-share-${i}">My share (%)</label><input class="input batch-new-share" id="new-share-${i}" data-file-index="${i}" type="number" min="0" max="100" value="${p.share}"></div>
+   </div>`:'';
+  return `<section class="batch-file" data-preview-index="${i}"><div class="batch-head"><div><strong>${h(p.filename)}</strong><div class="mini-hint">${p.rows.length} rows · ${h(p.headers.filter(Boolean).join(' · '))}</div></div><span class="pill">CSV</span></div>
+   <div class="form-row"><label for="batch-account-${i}">Suggested account</label><select class="select batch-account-select" id="batch-account-${i}" data-file-index="${i}">${accountChoices}</select><p class="mini-hint">${p.identityMatch?'Matched to a previously imported bank account using its account identifier.':'Suggested from filename; first-time account types must be confirmed manually.'}${p.identity?' · Bank account identifier detected':' · No reliable identifier found'}</p></div>
+   ${accountFields}
+   <div class="batch-preview"><div class="batch-metric"><span>Valid transactions</span><strong>${stats.valid}</strong></div><div class="batch-metric"><span>Outgoing payments</span><strong>${stats.out} · ${fmt(stats.expense)}</strong></div><div class="batch-metric"><span>Incoming payments</span><strong>${stats.in} · ${fmt(stats.income)}</strong></div></div>
+   ${warnings.map(x=>`<div class="batch-warning">${h(x)}</div>`).join('')}
+   ${stats.invalid?`<p class="batch-note">${stats.invalid} invalid rows will be skipped.</p>`:''}
+   <details ${warnings.length?'open':''}><summary>Advanced: check column mapping</summary><div class="mapping-grid">${[
+       ['date','Transaction date'],['desc','Description'],['amount','Signed amount (if present)'],['debit','Money out (if separate)'],['credit','Money in (if separate)'],
+       ['time','Time of day (optional)'],['reference','Reference (optional)'],['balance','Balance after transaction (optional)'],['toAccount','Destination account (optional)'],['fromAccount','Source account (optional)']
+     ].map(([key,label])=>mappingSelect(key,label,p.headers,p.mapping[key],i)).join('')}</div></details>
+  </section>`;
+}
+function renderImport(){
+  const review=pendingImport?.length?`<section class="card" style="margin-top:18px"><h2 class="section-title">Review files before importing</h2><p class="mini-hint">${pendingImport.length} file(s) selected. Check the suggested account for each file. You can create new accounts or expand the advanced mapping when needed.</p>${pendingImport.map(importReviewFile).join('')}
+   <div class="batch-footer"><div class="mini-hint">You can import additional files later; duplicates are skipped when they match previously imported transactions.</div><div class="form-actions"><button class="btn btn-primary" id="confirm-import">Import all files</button><button class="btn" id="cancel-import">Cancel</button></div></div></section>`:'';
+  return `${intro('Import & backup','Your statements stay on this device. No bank login or API keys required.')}<div class="split"><section class="card"><h2 class="section-title">Import multiple bank statements</h2><p class="mini-hint">Select several CSV files at once. Counts detects common bank columns automatically and suggests the account from each filename. Check the account assignment before confirming.</p><label class="dropzone" for="csv-file" style="display:block;margin-top:18px"><strong>⇪ &nbsp;Select one or more CSV files</strong><p>Select all of your accounts together (Ctrl/Shift-click if needed).</p><input type="file" id="csv-file" accept=".csv,text/csv,text/plain" multiple></label><p class="mini-hint" style="margin-top:12px">CSV files are processed locally. Account suggestions are guesses, not bank verification. Nothing is uploaded.</p><div class="form-actions"><button class="btn btn-sm" id="download-sample">Download example CSV</button></div></section><section class="card"><h2 class="section-title">Data management</h2><p class="mini-hint">Your transactions and category rules are saved in this browser's local storage. Export a backup periodically, especially before clearing site data or changing devices.</p><div class="stack" style="margin-top:20px"><button class="btn" id="export-backup">↓ Download complete JSON backup</button><label class="btn" style="text-align:center;cursor:pointer">↑ Restore JSON backup<input type="file" id="restore-backup" accept=".json,application/json" hidden></label><button class="btn btn-danger" id="clear-transactions">Clear all transactions</button><button class="btn" id="load-demo">Reset to example data</button></div><div class="notice warn">This prototype has no cloud backup. Browser storage may be deleted by clearing site data, using private browsing, or switching browsers. Backup files are unencrypted: store them securely.</div></section></div>${review}`;
+}
+function navigate(next){page=next;render();window.scrollTo({top:0,behavior:'instant'});}
+function toggleDetails(id){
+  const detail=[...document.querySelectorAll('[data-details]')].find(x=>x.dataset.details===id);
+  const row=[...document.querySelectorAll('[data-row-id]')].find(x=>x.dataset.rowId===id);
+  if(!detail||!row)return;
+  const expanded=!detail.classList.contains('hidden');
+  detail.classList.toggle('hidden',expanded);
+  row.setAttribute('aria-expanded',String(!expanded));
+}
+function showModal(content){modal.innerHTML=`<button class="btn-plain modal-close" id="close-modal" aria-label="Close dialog">✕</button>${content}`;modalLayer.classList.remove('hidden');applyTranslations(modal);}
+function closeModal(){modalLayer.classList.add('hidden');modal.innerHTML='';}
+function editTransaction(id){const t=state.transactions.find(x=>x.id===id);if(!t)return;
+  const cat=effectiveCategory(t,state.rules);
+  const currentGroup=effectiveGroup(t,state.rules,state.categories)||'';
+  const matching=derive(state.transactions,state.accounts,state.categories,state.rules,'household','personal','all').visible.find(x=>x.id===id)?.transfer;
+  showModal(`<h2>Edit transaction</h2><p><strong>${h(t.description)}</strong><br>${h(dateFmt(t.date))} · ${h(fmtExact(t.amount))} · ${h(translateMessage(state.accounts.find(x=>x.id===t.accountId)?.name))}</p><form id="edit-tx-form" data-id="${h(t.id)}"><div class="form-row"><label for="tx-group">Spending type</label><select id="tx-group" name="group" class="select">${groupOptions(currentGroup,true)}</select></div><div class="form-row"><label for="tx-category">Specific category</label><select id="tx-category" name="category" class="select" ${currentGroup===''?'disabled':''}>${cat?`<option value="">— Choose category —</option>`:''}${childCategoryOptions(currentGroup,cat)}</select></div><div class="radio-options"><strong>Transfer handling</strong><label><input type="radio" name="transfer" value="auto" ${t.transferOverride===null?'checked':''}> Automatic (${matching?'currently treated as an internal transfer':'no confirmed match'})</label><label><input type="radio" name="transfer" value="yes" ${t.transferOverride===true?'checked':''}> This is an internal transfer — exclude from expenses</label><label><input type="radio" name="transfer" value="no" ${t.transferOverride===false?'checked':''}> This is not an internal transfer</label></div><div class="radio-options" style="margin-top:16px"><label><input type="checkbox" name="remember"> Remember this category for all transactions from <b>${h(merchantKey(t.description))}</b></label></div><p class="mini-hint">An individual category override takes precedence over automatic rules. Transfer settings are independent of categorization.</p><div class="form-actions"><button type="submit" class="btn btn-primary">Save correction</button><button type="button" class="btn" id="cancel-modal">Cancel</button></div></form>`);
+}
+
+function editAccount(id){const a=state.accounts.find(x=>x.id===id);showModal(`<h2>${a?'Edit account':'Add account'}</h2><p>A shared account's personal-share percentage can be set anywhere from 0% to 100%.</p><form id="account-form" data-id="${h(a?.id||'')}"><div class="form-row"><label>Account name</label><input class="input" name="name" value="${h(a?.name||'')}" required maxlength="52" placeholder="e.g. Joint household account"></div><div class="form-row"><label>Account type</label><select name="type" class="select">${sel(Object.entries(accountTypes).map(([k,v])=>[k,v]),a?.type||'checking')}</select></div><div class="form-row"><label>Ownership</label><select class="select" name="role"><option value="personal" ${a?.role!=='shared'?'selected':''}>Personal</option><option value="shared" ${a?.role==='shared'?'selected':''}>Shared</option></select></div><div class="form-row"><label>My share of account spending (%)</label><input class="input" type="number" name="share" min="0" max="100" step="1" value="${a?.share??100}" required></div><div class="form-row"><label>Bank account number (optional)</label><input class="input" name="bankNumber" autocomplete="off" inputmode="numeric" placeholder="11-digit account number"><p class="mini-hint">${a?.bankKey?'An account identifier is already saved. Leave blank to keep it.':'Only an account fingerprint is stored locally; not the full number.'} Used to recognize future imports.</p></div><div class="form-actions"><button type="submit" class="btn btn-primary">Save account</button><button type="button" class="btn" id="cancel-modal">Cancel</button>${a?`<button type="button" class="btn btn-danger" data-remove-account="${h(a.id)}">Delete account</button>`:''}</div></form>`);}
+function download(filename,content,type){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);}
+async function loadCSVs(files){
+  if(!files?.length)return;
+  if(files.length>30){toast('Please select at most 30 CSV files per batch.','error');return;}
+  const pending=[];const problems=[];
+  for(const file of files){
+    if(file.size>12_000_000){problems.push(file.name+': CSV exceeds 12 MB');continue;}
+    try{
+      const bytes=await file.arrayBuffer();let text;
+      try{text=new TextDecoder('utf-8',{fatal:true}).decode(bytes);}catch{text=new TextDecoder('windows-1252').decode(bytes);}
+      const parsed=parseCSV(text);if(parsed.length<2)throw Error('No transaction rows detected');
+      const idx=detectHeader(parsed);const headers=parsed[idx].map(x=>String(x).trim()),rows=parsed.slice(idx+1).filter(row=>row.some(x=>x.trim()));
+      const proposed=proposeAccount(file.name),mapping=guessMapping(headers);
+      const identity=mapUsable(mapping)?inferOwnAccountKey(csvToTransactions(rows,mapping,'preview').records):'';
+      const matched=identity?state.accounts.find(a=>knownBankKey(a)===identity):null;
+      if(matched)proposed.selected=matched.id;
+      pending.push({filename:file.name,headers,rows,mapping,identity,identityMatch:!!matched,...proposed});
+    }catch(e){problems.push(file.name+': '+e.message);}
+  }
+  if(!pending.length){toast('No files could be read. '+problems.join('; '),'error');return;}
+  pendingImport=pending;render();
+  if(problems.length)toast('Some files were skipped: '+problems.join('; '),'error');
+  else toast(`${pending.length} file(s) ready for review. Confirm the account assignment before importing.`);
+}
+function finishImport(){
+  if(!pendingImport?.length)return;
+  // Validate every file before writing any transactions.
+  const plans=[],reserved=[];
+  for(let i=0;i<pendingImport.length;i++){
+    const p=pendingImport[i];
+    if(!mapUsable(p.mapping)){toast(`File ${i+1}: choose date, description and amount columns.`, 'error');return;}
+    let accountId=p.selected;
+    if(accountId==='new'){
+      const name=(document.getElementById('new-name-'+i)?.value||p.name).trim().slice(0,52);
+      const type=document.getElementById('new-type-'+i)?.value||p.type;
+      const role=document.getElementById('new-role-'+i)?.value||p.role;
+      const share=Number(document.getElementById('new-share-'+i)?.value??p.share);
+      if(!name||!Number.isFinite(share)||share<0||share>100){toast(`File ${i+1}: enter a valid account name and share.`, 'error');return;}
+      const prev=[...state.accounts,...reserved].find(a=>toNorm(a.name)===toNorm(name));
+      if(prev)accountId=prev.id;
+      else {accountId='account_'+hash(toNorm(name))+'_'+i;reserved.push({id:accountId,name,type,role,share,bankKey:''});}
+    }
+    if(accountId!=='new'&&!state.accounts.some(a=>a.id===accountId)&&!reserved.some(a=>a.id===accountId)){
+      toast(`File ${i+1}: choose an account.`, 'error');return;
+    }
+    const parsed=csvToTransactions(p.rows,p.mapping,accountId);
+    if(!parsed.records.length){toast(`File ${i+1}: no valid transactions. Check the column mapping.`, 'error');return;}
+    const identity=inferOwnAccountKey(parsed.records);
+    const chosen=[...state.accounts,...reserved].find(a=>a.id===accountId);
+    const previouslyKnown=chosen&&knownBankKey(chosen);
+    if(identity&&previouslyKnown&&identity!==previouslyKnown){toast(`File ${i+1}: the bank account identifier does not match the selected account. Check the account assignment.`, 'error');return;}
+    const existingAccount=identity?[...state.accounts,...reserved].find(a=>a.id!==accountId&&knownBankKey(a)===identity):null;
+    if(existingAccount){toast(`File ${i+1}: this statement matches ${existingAccount.name}. Select that account instead to avoid duplicates.`, 'error');return;}
+    plans.push({filename:p.filename,accountId,identity,...parsed});
+  }
+  if(state.demo&&!confirm(translateMessage('This workspace currently holds example transactions. Replace all sample transactions with your imported bank data?')))return;
+  const proposedState={...state,accounts:[...state.accounts,...reserved],transactions:state.demo?[]:state.transactions.map(t=>({...t})),rules:state.demo?[]:[...state.rules],demo:false};
+  const existing=new Map(proposedState.transactions.map(x=>[x.id,x]));let count=0,duplicates=0,invalid=0;
+  for(const p of plans){const a=proposedState.accounts.find(a=>a.id===p.accountId);if(a&&p.identity&&!a.bankKey)a.bankKey=p.identity;}
+  for(const p of plans){
+    invalid+=p.errors.length;
+    for(const t of p.records){
+      const earlier=existing.get(t.id);
+      if(earlier){
+        // Previous Counts versions did not retain bank transfer endpoint fingerprints.
+        // Fill only missing metadata, preserving user-corrected categories and transfer flags.
+        for(const key of ['fromKey','toKey','time','reference','balance']){
+          if((earlier[key]===undefined||earlier[key]===null||earlier[key]==='')&&t[key]!==undefined&&t[key]!==null&&t[key]!=='')earlier[key]=t[key];
+        }
+        duplicates++;continue;
+      }
+      existing.set(t.id,t);proposedState.transactions.push(t);count++;
+    }
+  }
+  // Commit only when this exact result can be persisted; do not discard an old working state.
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(proposedState));}
+  catch(e){toast('Browser storage is full. Nothing was imported; please export a backup or import fewer months.','error');return;}
+  state=proposedState;pendingImport=null;chosenMonth='m:'+latestMonth();accountView=state.accounts[0]?.id||'personal';navigate('dashboard');
+  toast(`Imported ${count} transactions from ${plans.length} file(s). Skipped ${duplicates} duplicates and ${invalid} invalid rows.`);
+}
+function updateState(){save();render();}
+// Event delegation ensures all re-rendered controls stay interactive.
+document.addEventListener('click',event=>{
+  const btn=event.target.closest('button,[data-nav]');  if(!btn){const tr=event.target.closest('[data-row-id]');if(tr)toggleDetails(tr.dataset.rowId);return;}
+  if(btn.dataset.page){navigate(btn.dataset.page);return;}
+  if(btn.dataset.pageLink){navigate(btn.dataset.pageLink);return;}
+  if(btn.dataset.nav){event.preventDefault();navigate(btn.dataset.nav);return;}
+  if(btn.id==='top-import'){navigate('import');return;}
+  if(btn.dataset.perspective){perspective=btn.dataset.perspective;render();return;}
+  if(btn.dataset.trendMode){trendMode=btn.dataset.trendMode;render();return;}
+  if(btn.dataset.edit){editTransaction(btn.dataset.edit);return;}
+  if(btn.dataset.expand){toggleDetails(btn.dataset.expand);return;}
+  if(btn.dataset.editAccount){editAccount(btn.dataset.editAccount);return;}
+  if(btn.id==='add-account'){editAccount(null);return;}
+  if(btn.id==='close-modal'||btn.id==='cancel-modal'){closeModal();return;}
+  if(btn.id==='confirm-import'){finishImport();return;}
+  if(btn.id==='cancel-import'){pendingImport=null;render();return;}
+  if(btn.dataset.deleteRule){if(confirm(translateMessage(`Remove custom categorization rule for ${btn.dataset.deleteRule}?`))){state.rules=state.rules.filter(r=>r.merchant!==btn.dataset.deleteRule);updateState();}return;}
+  if(btn.dataset.deleteCategory){const id=btn.dataset.deleteCategory,used=state.rules.some(x=>x.category===id)||state.transactions.some(x=>x.category===id);if(used){toast('This category is used by transactions or rules. Reassign them before deleting.','error');return;}if(confirm(translateMessage('Remove this custom category?'))){state.categories=state.categories.filter(x=>x.id!==id);updateState();}return;}
+  if(btn.dataset.removeAccount){const a=state.accounts.find(x=>x.id===btn.dataset.removeAccount);if(state.accounts.length<=1){toast('At least one account is required.','error');return;}if(confirm(translateMessage(`Delete ${a.name} and ALL its imported transactions? This cannot be undone without a backup.`))){state.transactions=state.transactions.filter(x=>x.accountId!==a.id);state.accounts=state.accounts.filter(x=>x.id!==a.id);if(accountView===a.id)accountView=state.accounts[0].id;if(importAccount===a.id)importAccount=state.accounts[0].id;closeModal();updateState();}return;}
+  if(btn.id==='download-sample'){download('sample_sparebank_statement.csv','Dato;Beskrivelse;Rentedato;Inn;Ut;Til konto;Fra konto\r\n25.10.2026;KIWI DEMO STORE;;;-179,98;;\r\n24.10.2026;Demo salary;;31250,00;;;\r\n23.10.2026;Demo electricity;;;-922,40;;\r\n','text/csv;charset=utf-8');return;}
+  if(btn.id==='export-backup'){download('counts_backup_'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(state,null,2),'application/json');toast('Backup downloaded. Store it securely.');return;}
+  if(btn.id==='clear-transactions'){if(confirm(translateMessage('Delete ALL transaction data from this browser? Account definitions and categorization rules will remain. Export a backup first if needed.'))){state.transactions=[];state.demo=false;chosenMonth='all';updateState();toast('All transactions cleared.');}return;}
+  if(btn.id==='load-demo'){if(confirm(translateMessage('Replace ALL local data with fictional example transactions? Existing data and rules will be lost unless backed up.'))){state=demoState();chosenMonth='m:'+currentMonth();importAccount='personal';updateState();toast('Example transactions loaded.');}return;}
+});
+modalLayer.addEventListener('click',e=>{if(e.target===modalLayer)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-row-id]')){e.preventDefault();toggleDetails(e.target.dataset.rowId);}});
+document.addEventListener('change',async e=>{
+  const el=e.target;
+  if(el.id==='language-switch'){setLanguage(el.value);return;}
+  if(el.id==='period-year'){setPeriod(el.value);render();}
+  else if(el.id==='period-quarter'){setPeriod(document.getElementById('period-year').value,el.value);render();}
+  else if(el.id==='period-month'){setPeriod(document.getElementById('period-year').value,document.getElementById('period-quarter').value,el.value);render();}
+  else if(el.id==='rule-group'||el.id==='tx-group'){
+    const select=document.getElementById(el.id==='rule-group'?'rule-category':'tx-category');
+    if(el.value!==''){select.disabled=false;if(!select.value)select.value=state.categories[0]?.id||'';}else select.disabled=true;applyTranslations(select);
+  }
+  else if(el.id==='account-filter'){accountView=el.value;render();}
+  else if(el.id==='type-filter'){typeFilter=el.value;render();}
+  else if(el.id==='category-filter'){categoryFilter=el.value;render();}
+  else if(el.id==='batch-account-select'){/* unused generic id */}
+  else if(el.classList.contains('batch-account-select')){const p=pendingImport?.[Number(el.dataset.fileIndex)];if(p){p.selected=el.value;render();}}
+  else if(el.classList.contains('batch-map-field')){const p=pendingImport?.[Number(el.dataset.fileIndex)];if(p){p.mapping[el.dataset.field]=Number(el.value);render();}}
+  else if(el.classList.contains('batch-new-type')){const p=pendingImport?.[Number(el.dataset.fileIndex)];if(p)p.type=el.value;}
+  else if(el.classList.contains('batch-new-role')){const p=pendingImport?.[Number(el.dataset.fileIndex)];if(p){p.role=el.value;p.share=el.value==='shared'?50:100;const share=document.getElementById('new-share-'+el.dataset.fileIndex);if(share)share.value=p.share;}}
+  else if(el.classList.contains('batch-new-share')){const p=pendingImport?.[Number(el.dataset.fileIndex)];if(p)p.share=Number(el.value);}
+  else if(el.id==='csv-file'){await loadCSVs(Array.from(el.files||[]));}
+  else if(el.id==='restore-backup'){
+    const f=el.files?.[0];if(!f)return;
+    try{const obj=JSON.parse(await f.text());if(!validateState(obj))throw Error('Not a valid Counts v1 backup.');if(!confirm(translateMessage('Replace all locally saved accounts, transactions and rules with this backup?')))return;state=obj;accountView=state.accounts[0]?.id||'personal';importAccount=accountView;chosenMonth='m:'+latestMonth();pendingImport=null;updateState();toast('Backup successfully restored.');}catch(err){toast('Could not restore: '+err.message,'error');}
+  }
+});
+document.addEventListener('input',e=>{if(e.target.classList.contains('batch-new-name')){const p=pendingImport?.[Number(e.target.dataset.fileIndex)];if(p)p.name=e.target.value;return;}if(e.target.id==='search-transactions'){const el=e.target;search=el.value;const pos=el.selectionStart;render();const next=document.getElementById('search-transactions');next?.focus();try{next?.setSelectionRange(pos,pos);}catch{}}});
+document.addEventListener('submit',e=>{
+  if(e.target.id==='edit-tx-form'){e.preventDefault();const f=e.target,t=state.transactions.find(x=>x.id===f.dataset.id);if(!t)return;
+    const fd=new FormData(f),cat=String(fd.get('category')||''),transfer=fd.get('transfer');
+    t.category=cat;t.groupOverride=cat?(String(fd.get('group'))||null):null;t.transferOverride=transfer==='yes'?true:transfer==='no'?false:null;
+    if(fd.has('remember')&&cat){const merchant=merchantKey(t.description);state.rules=state.rules.filter(x=>x.merchant!==merchant);state.rules.push({merchant,category:cat,group:t.groupOverride});t.category='';t.groupOverride=null;}
+    closeModal();updateState();toast('Transaction updated and saved locally.');return;
+  }
+  if(e.target.id==='account-form'){e.preventDefault();const f=e.target,fd=new FormData(f),id=f.dataset.id,name=String(fd.get('name')||'').trim(),share=Number(fd.get('share')),role=String(fd.get('role')),type=String(fd.get('type'));
+    const rawNumber=String(fd.get('bankNumber')||'').trim(),digits=rawNumber.replace(/\D/g,''),bankKey=digits.length===11?accountFingerprint(digits):'';
+    if(rawNumber&&!bankKey)return toast('Enter a valid bank account number.','error');
+    if(bankKey&&state.accounts.some(a=>a.id!==id&&knownBankKey(a)===bankKey))return toast('That bank account number is already linked to another account.','error');
+    if(!name||!Number.isFinite(share)||share<0||share>100)return toast('Enter a valid name and share between 0 and 100.','error');
+    if(id){const a=state.accounts.find(x=>x.id===id);Object.assign(a,{name,role,share,type});if(bankKey)a.bankKey=bankKey;}
+    else{const newId='account_'+Date.now().toString(36);state.accounts.push({id:newId,name,role,share,type,bankKey});}
+    closeModal();updateState();toast('Account saved.');return;
+  }
+  if(e.target.id==='new-rule-form'){e.preventDefault();const fd=new FormData(e.target),merchant=toNorm(fd.get('merchant')),category=String(fd.get('category')),group=String(fd.get('group'));if(merchant.length<3||!category||!state.categories.some(c=>c.id===category))return toast('Enter merchant text and choose a valid category.','error');state.rules=state.rules.filter(x=>x.merchant!==merchant);state.rules.push({merchant,category,group});updateState();toast('Merchant rule saved.');return;}
+  if(e.target.id==='new-category-form'){e.preventDefault();const fd=new FormData(e.target),name=String(fd.get('name')||'').trim(),group=String(fd.get('group'));if(!name||!['essential','discretionary'].includes(group))return;
+    const id='custom_'+Date.now().toString(36);const used=state.categories.filter(c=>c.id.startsWith('custom_')).length;const palette=['#e969c2','#35d2cd','#f2b952','#9384ee','#f28c6a','#96d45e','#60aaf2','#d7a4e4'];state.categories.push({id,name,group,color:palette[used%palette.length]});updateState();toast('Category added.');return;}
+});
+
+render();
+
+</script>
+</body>
+</html>
